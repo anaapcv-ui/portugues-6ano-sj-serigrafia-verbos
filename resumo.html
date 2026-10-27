@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo · Ateliê de Serigrafia · Português 6º</title>
+<style>
+  :root{--fundo:#15161c;--fundo2:#1e2029;--aco:#30333f;--aco2:#454959;--laranja:#ff7a2f;--azul:#4a9df8;--verde:#3ddc84;--vermelho:#ff5d6c;--amarelo:#ffd23f;--texto:#f3ece0;--cinza:#aaa49a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 480px at 50% -10%,#3a1d10,#15161c 60%),var(--fundo);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#26160e,#4d2812);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--laranja)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#ffd7b5;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#f3dcc8;font-size:.92rem}
+  .wrap{max-width:900px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--fundo2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--laranja);color:#2a1300;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--laranja);font-size:1.1rem;margin-bottom:8px}
+  .sec{margin:26px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .sec h2{font-size:1.25rem}
+  .sec .pill{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:var(--laranja);color:#2a1300;font-weight:bold}
+  .sec .pill.gb{background:var(--azul);color:#04213d}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+  .card{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:14px;border-top:4px solid var(--laranja)}
+  .card.gb{border-top-color:var(--azul)}
+  .card h3{font-size:1rem;margin-bottom:8px}
+  .card ul{margin-left:18px}
+  .card li{margin-bottom:5px;font-size:.93rem}
+  .card b{color:var(--laranja)}
+  .card.gb b{color:var(--azul)}
+  .grande{background:linear-gradient(120deg,#2a1c10,#1b2333);border:2px solid var(--laranja);border-radius:16px;padding:16px;font-size:1.02rem}
+  .grande b{color:var(--amarelo)}
+  .postit{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.92rem;box-shadow:3px 4px 10px rgba(0,0,0,.4);transform:rotate(-1deg);margin:12px 0}
+  .postit b{color:#7a4a00}
+  .peg{background:#3a1420;border:2px solid var(--vermelho);border-radius:12px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+  .peg b{color:#ffb3bc}
+  .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .flip{perspective:900px;height:180px;cursor:pointer}
+  .flip .inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.on .inner{transform:rotateY(180deg)}
+  .flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:.88rem}
+  .flip .front{background:linear-gradient(135deg,#3a2412,#181e2a);border:1px solid var(--aco2);font-weight:bold;font-size:1rem}
+  .flip .front small{display:block;color:var(--cinza);font-weight:normal;font-size:.72rem;margin-top:6px}
+  .flip .back{background:#0e2b1f;border:1px solid var(--verde);transform:rotateY(180deg)}
+  .tabela{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+  .tabela th,.tabela td{border:1px solid var(--aco);padding:7px 9px;text-align:left;vertical-align:top}
+  .tabela th{background:#1f2738}
+  .duelo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .duelo .lado{background:#131925;border-radius:12px;padding:12px;border:2px solid var(--aco2);text-align:center}
+  .duelo .lado.l1{border-color:var(--azul)} .duelo .lado.l2{border-color:var(--laranja)}
+  .duelo .lado .ic{font-size:2rem}
+  .duelo h4{margin:4px 0}
+  @media(max-width:600px){.duelo{grid-template-columns:1fr}}
+  .duelo.tres{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:600px){.duelo.tres{grid-template-columns:1fr}}
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .numeros div{background:#0a0d13;border:1px solid #2b3446;border-radius:12px;padding:10px;text-align:center;font-size:.82rem}
+  .numeros div span{display:block;font-family:'Courier New',monospace;font-size:1.4rem;font-weight:bold;color:var(--laranja)}
+  .gloss{columns:2;column-gap:18px}
+  .gloss div{break-inside:avoid;margin-bottom:8px;font-size:.9rem}
+  .gloss b{color:var(--laranja)}
+  @media(max-width:600px){.gloss{columns:1}}
+  .fim{background:linear-gradient(120deg,#1b2a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:24px;text-align:center}
+  .fim h3{color:#8fe0b4;margin-bottom:8px}
+  .fim button{background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:bold;margin:6px;cursor:pointer;font-family:inherit}
+  .fim button:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .fim a.btn{display:inline-block;margin:6px;background:var(--azul);color:#04213d;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:10px}
+  .fim a.btn.off{background:#262d3e;color:#6f7896;pointer-events:none}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--fundo2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .mini{background:var(--fundo);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer;font-family:inherit}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(5,6,12,.96);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--azul);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a{display:inline-block;background:var(--azul);color:#04213d;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Ateliê de Serigrafia · Português 6º ano · Colégio São José</div>
+  <h1>🗺️ Resumo — Mostruário de Tintas</h1>
+  <p>Tudo o que cai, em cards, cartas, tabelas e post-its · Livro pp. 300–306 e 308–310</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a class="on" href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>🎨 O mostruário de tintas</h2>
+    <p>Todo ateliê tem um mostruário com as cores prontas para consultar. Este é o seu: tudo o que cai na prova sobre <b>verbos</b> e <b>interpretação</b>, organizado em cards, tabelas, cartas para virar e post-its. Use para fechar as dúvidas que o Quiz mostrou e para revisar na véspera. Leia até o fim: lá embaixo está o botão <b>"Li o resumo até o fim"</b>, que destrava o <b>📝 Simulado</b>.</p>
+  </div>
+  <div class="painel"><span id="salvo">📏 Rolagem máxima: 0%</span><button class="mini" onclick="exportar()">📥 Exportar</button></div>
+
+  <div class="sec"><span class="pill">Camada 1 · p. 300</span><h2>🎨 O que é verbo</h2></div>
+  <div class="grande">O <b>verbo</b> é a palavra que expressa <b>ação</b>, <b>estado</b> ou <b>fenômeno da natureza</b>. Ele muda de forma (se <b>flexiona</b>) em <b>tempo</b>, <b>modo</b>, <b>número</b> e <b>pessoa</b>.</div>
+  <div class="grid" style="margin-top:12px">
+    <div class="card"><h3>🏃 Ação</h3><ul><li>Alguém <b>faz</b> alguma coisa.</li><li>“As mulheres [...] <b>ocupam</b> menos de 10% dos cargos políticos.”</li></ul></div>
+    <div class="card"><h3>🪞 Estado</h3><ul><li><b>Liga</b> um substantivo a uma <b>característica</b>; ninguém faz nada.</li><li>“As mulheres <b>são</b> mais da metade da população.”</li></ul></div>
+    <div class="card"><h3>🌧️ Fenômeno da natureza</h3><ul><li>Quem “faz” é a <b>natureza</b>.</li><li>“Vai <b>chover</b>.”</li></ul></div>
+  </div>
+
+  <div class="sec"><span class="pill">Camada 2 · p. 300</span><h2>🖌️ Locução verbal e formas nominais</h2></div>
+  <div class="grid">
+    <div class="card"><h3>🔗 Locução verbal</h3><ul><li>Expressão formada por <b>dois ou mais verbos</b>: <i>vai chover</i>.</li><li><b>Auxiliar</b> (vai) + <b>principal</b> (chover).</li><li>O principal é <b>sempre o último</b>.</li><li>Só o <b>auxiliar</b> é conjugado.</li></ul></div>
+    <div class="card"><h3>🧾 As 3 formas nominais</h3><ul><li><b>Infinitivo</b> (termina em -r): trabalhar, chover, dormir.</li><li><b>Gerúndio</b> (-ndo): trabalhando, chovendo, dormindo.</li><li><b>Particípio</b> (-do): trabalhado, chovido, dormido.</li></ul></div>
+  </div>
+  <table class="tabela">
+    <thead><tr><th>Exemplo do livro</th><th>Auxiliar</th><th>Principal</th><th>Forma nominal</th></tr></thead>
+    <tbody>
+      <tr><td>“[...] <b>vai trabalhar</b> off-line.”</td><td>vai</td><td>trabalhar</td><td>infinitivo</td></tr>
+      <tr><td>“Na noite de ontem <b>estava chovendo</b>.”</td><td>estava</td><td>chovendo</td><td>gerúndio</td></tr>
+      <tr><td>“O compositor <b>havia dormido</b> durante a chuva.”</td><td>havia</td><td>dormido</td><td>particípio</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec"><span class="pill">Camada 3 · pp. 301 e 310</span><h2>🧪 As três conjugações</h2></div>
+  <div class="duelo tres">
+    <div class="lado l1"><div class="ic">🟠</div><h4 style="color:var(--laranja)">1ª conjugação</h4>terminação <b>-ar</b><br>amar, estudar</div>
+    <div class="lado l2"><div class="ic">🔵</div><h4 style="color:var(--azul)">2ª conjugação</h4>terminação <b>-er</b> e <b>-or</b><br>escrever, pôr</div>
+    <div class="lado l3" style="border-color:var(--verde)"><div class="ic">🟢</div><h4 style="color:var(--verde)">3ª conjugação</h4>terminação <b>-ir</b><br>partir, dormir</div>
+  </div>
+  <div class="postit">📌 <b>Dica de prova:</b> verbo conjugado? Volte ao <b>infinitivo</b>. <i>é</i> → <b>ser</b> → 2ª · <i>sobrevivia</i> → <b>sobreviver</b> → 2ª · <i>publica</i> → <b>publicar</b> → 1ª.</div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> <b>pôr</b> termina em <b>-or</b>, e mesmo assim é da <b>2ª conjugação</b>. Não existe “4ª conjugação”.</div>
+
+  <div class="sec"><span class="pill gb">Camada 4 · p. 301</span><h2>⏳ Tempo verbal</h2></div>
+  <table class="tabela">
+    <thead><tr><th>Tempo</th><th>Quando?</th><th>Exemplo do livro</th></tr></thead>
+    <tbody>
+      <tr><td><b>Presente</b></td><td>Momento em que se fala, ou ação permanente</td><td>“Ela <b>sobrevive</b> sem internet.”</td></tr>
+      <tr><td><b>Passado</b> ou <b>pretérito</b></td><td><b>Antes</b> do momento em que se fala</td><td>“Ela <b>sobrevivia</b> sem internet.”</td></tr>
+      <tr><td><b>Futuro</b></td><td><b>Depois</b> do momento em que se fala</td><td>“Ela <b>sobreviverá</b> sem internet.”</td></tr>
+    </tbody>
+  </table>
+  <div class="peg">⚠️ <b>Pegadinha:</b> <b>pretérito</b> e <b>passado</b> são o mesmo tempo, com dois nomes.</div>
+
+  <div class="sec"><span class="pill gb">Camada 5 · pp. 301 e 308</span><h2>👥 Número e pessoa</h2></div>
+  <table class="tabela">
+    <thead><tr><th></th><th>Singular</th><th>Plural</th></tr></thead>
+    <tbody>
+      <tr><td><b>1ª pessoa</b></td><td>eu organiz<b>o</b></td><td>nós organiz<b>amos</b></td></tr>
+      <tr><td><b>2ª pessoa</b></td><td>tu organiz<b>as</b></td><td>vós organiz<b>ais</b></td></tr>
+      <tr><td><b>3ª pessoa</b></td><td>ele organiz<b>a</b></td><td>eles organiz<b>am</b></td></tr>
+    </tbody>
+  </table>
+  <div class="postit">📌 <b>Dica de prova:</b> o verbo tem que <b>concordar em número e pessoa</b> com aquilo a que se refere (o livro pede essa conferência na produção do cartaz, p. 308). “Eles organiza” está errado; o certo é “eles organiz<b>am</b>”.</div>
+
+  <div class="sec"><span class="pill gb">Camada 6 · p. 302</span><h2>🎭 Modos verbais</h2></div>
+  <p style="margin-bottom:10px">Os <b>modos</b> mostram a <b>atitude</b> de quem fala em relação ao que diz. Repare: é o <b>mesmo verbo</b> (divulgar) nos três exemplos.</p>
+  <div class="grid">
+    <div class="card gb"><h3>✅ Indicativo</h3><ul><li>De modo geral: <b>certeza, convicção</b>.</li><li>“A propaganda <b>divulgou</b> a campanha de vacinação.”</li></ul></div>
+    <div class="card gb"><h3>🤔 Subjuntivo</h3><ul><li>De modo geral: <b>dúvida, possibilidade ou hipótese</b>.</li><li>“Seria ótimo se <b>divulgassem</b> a campanha.”</li></ul></div>
+    <div class="card gb"><h3>📣 Imperativo</h3><ul><li><b>Ordem, pedido, conselho, instrução ou convite</b>.</li><li>“<b>Divulgue</b> a campanha de vacinação.”</li></ul></div>
+  </div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> imperativo não é só ordem. “Por favor, <b>seja</b> legal, mãe.” = <b>pedido</b> (p. 310). “Mulheres, <b>participem</b> mais da política” = <b>ordem</b> (p. 301).</div>
+
+  <div class="sec"><span class="pill gb">Camada 7 · pp. 302–303</span><h2>🧩 Oração, período e sintagmas</h2></div>
+  <div class="grid">
+    <div class="card gb"><h3>🧱 Oração</h3><ul><li>Enunciado com sentido organizado em torno de <b>um verbo</b> ou de <b>uma locução verbal</b>.</li><li>Conte os verbos; uma locução conta como <b>um</b>.</li></ul></div>
+    <div class="card gb"><h3>📏 Período</h3><ul><li>Frase organizada com <b>uma ou mais orações</b>.</li><li>“Mulheres, <b>participem</b> mais da política e <b>façam</b> a diferença...” = 1 período, 2 orações.</li></ul></div>
+    <div class="card gb"><h3>🧩 Sintagmas</h3><ul><li><b>Sintagma verbal</b>: o núcleo é o <b>verbo</b>.</li><li><b>Sintagma nominal</b>: um <b>substantivo</b> + os termos que <b>concordam</b> com ele.</li></ul></div>
+  </div>
+  <div class="grande" style="margin-top:12px">“[...] <b>serão realizadas</b> | <b>eleições municipais</b>.”<br><span style="font-size:.9rem">🔵 sintagma verbal: <b>serão realizadas</b> · 🟠 sintagma nominal: <b>eleições municipais</b> (substantivo <i>eleições</i> + adjetivo <i>municipais</i>)</span></div>
+
+  <div class="sec"><span class="pill gb">Camada 8 · pp. 304–306</span><h2>📰 Os usos do presente do indicativo</h2></div>
+  <div class="numeros">
+    <div><span>🕒</span>ação <b>no momento</b> em que ocorre</div>
+    <div><span>🔁</span>situação <b>habitual</b>, rotineira (“julgamos a tudo e a todos, a todo momento”)</div>
+    <div><span>🌍</span><b>verdades universais</b></div>
+    <div><span>🪨</span><b>estados</b> permanentes ou temporários</div>
+    <div><span>📖</span><b>biografia</b>: fatos passados no presente dão <b>vivacidade</b></div>
+    <div><span>🗞️</span><b>títulos de notícia</b>: o presente dá <b>valor de novidade</b></div>
+  </div>
+  <div class="postit">📌 <b>Exemplos do livro:</b> “Sesc <b>expõe</b> acervo da sua Coleção de Artes” · “Napoli <b>vence</b> Lecce e <b>amplia</b> vantagem na liderança do Italiano” → presente do indicativo com valor de novidade.</div>
+
+  <div class="sec"><span class="pill">Camadas 9 e 10 · pp. 303, 308–310</span><h2>📢 O verbo na propaganda e a interpretação</h2></div>
+  <table class="tabela">
+    <thead><tr><th>Anúncio (livro)</th><th>Verbos e modos</th><th>O que observar</th></tr></thead>
+    <tbody>
+      <tr><td><b>Mata atlântica</b> (p. 303)</td><td><b>existe</b> (indicativo) · <b>conservarmos</b> (subjuntivo) · <b>aprenda, compartilhe, participe, divulgue, clique, acesse</b> (imperativo)</td><td>O <b>imperativo predomina</b>: a propaganda quer que o leitor <b>aja</b>. Folhagens verdes reforçam a mensagem.</td></tr>
+      <tr><td><b>Outubro Rosa</b> (p. 309)</td><td><b>Lute</b>, <b>tenha</b>, <b>previna-se</b> (imperativo) · <b>é</b> (indicativo)</td><td>Público-alvo: <b>mulheres</b>. Finalidade: incentivar a <b>prevenção</b> e o <b>diagnóstico precoce</b> do câncer. Tons de rosa, laço e luvas de boxe.</td></tr>
+      <tr><td><b>Justiça Eleitoral</b> (pp. 300–302)</td><td><b>participem</b>, <b>façam</b> (imperativo = ordem)</td><td>Incentiva as mulheres a participar mais da política.</td></tr>
+    </tbody>
+  </table>
+  <div class="grid" style="margin-top:12px">
+    <div class="card"><h3>🧾 Elementos do anúncio de propaganda (p. 308)</h3><ul><li><b>Logotipo</b> e <b>slogan</b> da campanha.</li><li><b>Texto curto e direto</b> com a informação principal, para chamar a atenção do <b>público-alvo</b>.</li><li><b>Imagem</b> que reforça os sentidos do texto verbal.</li><li><b>Mensagem principal</b> em letras grandes e em destaque.</li></ul></div>
+    <div class="card"><h3>🔎 Roteiro de interpretação</h3><ul><li>Qual é a <b>finalidade</b>?</li><li>Quem é o <b>público-alvo</b>?</li><li>O que a <b>linguagem não verbal</b> (imagem, cores) acrescenta?</li><li>Nas tiras: de onde vem o <b>humor</b>? (Ex.: Armandinho entende “independência” como ganhar mesada.)</li></ul></div>
+  </div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> “Lute como uma mulher” muda a expressão comum “lute como um homem” para <b>romper estereótipos de gênero</b>, mostrando a mulher com <b>força e coragem</b>. Não é sobre lutar fisicamente!</div>
+
+  <div class="sec"><h2>🃏 Cartas de tinta (clique para virar)</h2></div>
+  <div class="flips">
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Verbo principal da locução<small>onde fica?</small></div><div class="face back">Sempre o <b>último</b>. Só o auxiliar é conjugado.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">-ndo e -do<small>quem é quem?</small></div><div class="face back"><b>-ndo</b> = gerúndio (chovendo) · <b>-do</b> = particípio (chovido).</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Pôr<small>que conjugação?</small></div><div class="face back"><b>2ª</b> conjugação (-or entra junto com -er).</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">“Seria ótimo se divulgassem”<small>que modo?</small></div><div class="face back"><b>Subjuntivo</b>: hipótese.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">“vão brincar”<small>quantas orações?</small></div><div class="face back"><b>Uma</b>: locução verbal conta como um verbo só.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Título de notícia no presente<small>por quê?</small></div><div class="face back">Dá <b>valor de novidade</b>.</div></div></div>
+  </div>
+
+  <div class="sec"><h2>📚 Glossário</h2></div>
+  <div class="gloss">
+    <div><b>Verbo</b> — palavra que expressa ação, estado ou fenômeno da natureza.</div>
+    <div><b>Flexão</b> — mudança na forma do verbo (tempo, modo, número, pessoa).</div>
+    <div><b>Locução verbal</b> — dois ou mais verbos funcionando juntos (auxiliar + principal).</div>
+    <div><b>Formas nominais</b> — infinitivo, gerúndio e particípio.</div>
+    <div><b>Conjugação</b> — grupo do verbo pela terminação: -ar (1ª), -er/-or (2ª), -ir (3ª).</div>
+    <div><b>Pretérito</b> — o mesmo que passado.</div>
+    <div><b>Pessoas do discurso</b> — 1ª, 2ª e 3ª (eu, tu, ele / nós, vós, eles).</div>
+    <div><b>Modo verbal</b> — forma que mostra a atitude de quem fala: indicativo, subjuntivo, imperativo.</div>
+    <div><b>Oração</b> — enunciado organizado em torno de um verbo ou de uma locução verbal.</div>
+    <div><b>Período</b> — frase com uma ou mais orações.</div>
+    <div><b>Sintagma</b> — bloco de palavras dentro da oração (nominal ou verbal).</div>
+    <div><b>Slogan</b> — frase curta da campanha, fácil de lembrar.</div>
+    <div><b>Público-alvo</b> — as pessoas a quem o anúncio se dirige.</div>
+    <div><b>Linguagem não verbal</b> — imagens, cores e formas que comunicam sem palavras.</div>
+    <div><b>Provincianismo</b> — modo de pensar considerado atrasado, sem inovações (glossário da p. 305).</div>
+  </div>
+
+  
+<div class="fim" id="fim">
+    <h3 id="fim-h3">🔒 Próxima etapa: Simulado</h3>
+    <p id="fim-txt">Role até aqui e confirme a leitura para destravar o Simulado.</p>
+    <button id="btn-li" onclick="confirmarLeitura()" disabled>✅ Li o resumo até o fim</button>
+    <a class="btn off" id="btn-prox" href="simulado.html">📝 Pronto para o Simulado!</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🎨</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Resumo, envie o Quiz.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='serigrafia_verbos';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+function checarTrava(){
+  if(podeAbrir('resumo')) return true;
+  var L=lerJSON(KIT+'_leitura_v1');
+  document.getElementById('lock-txt').textContent=(L&&L.concluido)?'Para abrir o Resumo, envie o Quiz.':'Para abrir o Resumo, conclua a Leitura Guiada e envie o Quiz.';
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(6px)';
+  return false;
+}
+
+/* ====== ESTADO DO RESUMO ====== */
+var CHAVE=KIT+'_resumo_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {rolagemMax:0}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } document.getElementById('salvo').textContent='📏 Rolagem máxima: '+Math.round(estado.rolagemMax||0)+'%'; }
+function medirRolagem(){
+  var h=document.documentElement; var total=h.scrollHeight-h.clientHeight; var pct= total<=0?100:Math.min(100,(window.scrollY||h.scrollTop)/total*100);
+  if(pct>(estado.rolagemMax||0)){ estado.rolagemMax=pct; salvar(); }
+  var b=document.getElementById('btn-li'); if(!estado.concluido && (estado.rolagemMax||0)>=90){ b.disabled=false; }
+}
+function confirmarLeitura(){ if(estado.concluido) return; estado.concluido=true; estado.concluidoEm=new Date().toISOString(); salvar(); atualizarFim(); }
+function atualizarFim(){
+  var h3=document.getElementById('fim-h3'), txt=document.getElementById('fim-txt'), b=document.getElementById('btn-li'), a=document.getElementById('btn-prox');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Resumo lido — Simulado destravado!'; txt.textContent=estado.concluido?'Agora encare a Tiragem Final, como se fosse a prova.':'Trilha liberada pelos pais.'; if(estado.concluido){ b.disabled=true; b.textContent='✅ Resumo concluído'; } a.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Simulado'; txt.textContent=(estado.rolagemMax||0)>=90?'Confirme a leitura para destravar o Simulado.':'Role até o fim da página para habilitar o botão (rolagem: '+Math.round(estado.rolagemMax||0)+'%).'; a.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='resumo_atelie-de-serigrafia.json'; a.click(); }
+
+if(checarTrava()){ salvar(); atualizarFim(); window.addEventListener('scroll',function(){ medirRolagem(); atualizarFim(); }); setTimeout(function(){ medirRolagem(); atualizarFim(); },300); } else { marcarNav(); }
+</script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ateliê de Serigrafia · Português 6º · Kit de Estudos</title>
+<style>
+  :root{--fundo:#15161c;--fundo2:#1e2029;--aco:#30333f;--aco2:#454959;--laranja:#ff7a2f;--azul:#4a9df8;--verde:#3ddc84;--vermelho:#ff5d6c;--amarelo:#ffd23f;--texto:#f3ece0;--cinza:#aaa49a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 520px at 50% -10%,#3a1d10,#15161c 60%),var(--fundo);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#4d2812,#26160e 55%,#10294a);padding:30px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--laranja);position:relative;overflow:hidden}
+  header:before{content:"";position:absolute;left:50%;top:50%;width:260px;height:260px;margin:-130px 0 0 -130px;border:3px solid rgba(255,255,255,.08);border-radius:50%}
+  header:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;margin-left:-1px;background:rgba(255,255,255,.06)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#ffd7b5;text-transform:uppercase;position:relative}
+  header h1{font-size:1.8rem;margin:8px 0 4px;position:relative}
+  header p{color:#f3dcc8;font-size:.95rem;position:relative}
+  .wrap{max-width:860px;margin:0 auto;padding:16px}
+  .intro{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin:16px 0}
+  .intro h2{color:var(--laranja);font-size:1.1rem;margin-bottom:8px}
+  .ordem{text-align:center;font-weight:bold;margin:10px 0;font-size:.95rem;color:#fff}
+  .selo-pais{display:none;background:#163a2a;border:1px solid var(--verde);color:#8fe0b4;border-radius:10px;padding:10px 14px;margin:12px 0;text-align:center;font-weight:bold}
+  .selo-pais.show{display:block}
+  .selo-pais button{margin-left:10px;background:transparent;border:1px solid var(--verde);color:#8fe0b4;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:inherit}
+  .trilha{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0}
+  .card{position:relative;background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;padding:16px;text-decoration:none;color:var(--texto);display:block;transition:transform .15s,box-shadow .15s}
+  .card .passo{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--cinza)}
+  .card .emoji{font-size:2rem;margin:4px 0}
+  .card h3{font-size:1.05rem;margin-bottom:6px}
+  .card p{font-size:.85rem;color:#cdd3e3}
+  .card .estado{margin-top:10px;font-size:.8rem;font-weight:bold;padding:6px 8px;border-radius:8px}
+  .card.aberto{border-color:var(--azul)}
+  .card.aberto:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(74,157,248,.25)}
+  .card.aberto .estado{background:#10263f;color:var(--azul)}
+  .card.novo{animation:brilho 1.6s ease-in-out 3;border-color:var(--laranja)}
+  @keyframes brilho{0%,100%{box-shadow:0 0 0 rgba(255,122,47,0)}50%{box-shadow:0 0 22px rgba(255,122,47,.6)}}
+  .card.novo .estado{background:#3a2a10;color:var(--laranja)}
+  .card.feito{border-color:var(--verde)}
+  .card.feito .estado{background:#0e2b1f;color:#8fe0b4}
+  .card.trancado{opacity:.55;filter:grayscale(.6);pointer-events:none;cursor:not-allowed}
+  .card.trancado .estado{background:#1f2433;color:var(--cinza)}
+  .card .cadeado{position:absolute;top:10px;right:12px;font-size:1.3rem}
+  .como{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin:16px 0}
+  .como h2{color:var(--azul);font-size:1.1rem;margin-bottom:8px}
+  .como ol{margin-left:20px}
+  .como li{margin-bottom:6px}
+  .cai{background:#1d2436;border-left:4px solid var(--amarelo);border-radius:0 12px 12px 0;padding:14px 16px;margin:16px 0;font-size:.93rem}
+  .cai h2{color:var(--amarelo);font-size:1.05rem;margin-bottom:6px}
+  .cai p{margin-bottom:6px}
+  .rel{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin:16px 0}
+  .rel h2{color:var(--azul);font-size:1.1rem;margin-bottom:8px}
+  .rel input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0a0e16;color:var(--texto);font-size:1rem;width:170px;text-transform:uppercase}
+  .rel button{background:var(--azul);color:#04213d;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px;cursor:pointer;font-family:inherit}
+  .rel .out{margin-top:12px;font-size:.9rem}
+  .rel .bloco{background:#131925;border:1px solid var(--aco);border-radius:10px;padding:10px 12px;margin:8px 0}
+  .rel .bloco b{color:var(--laranja)}
+  .rel .liberar{margin-top:10px;background:var(--verde);color:#04231a}
+  .rel .perigo{background:#4a1720;color:#ffc9cf;border:1px solid var(--vermelho)}
+  .dica{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.9rem;box-shadow:3px 4px 10px rgba(0,0,0,.4);transform:rotate(-1deg);margin:16px 0}
+  .dica b{color:#7a4a00}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--azul);border-radius:14px;padding:20px;max-width:420px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal button{background:var(--azul);color:#04213d;border:none;border-radius:8px;padding:9px 16px;font-weight:bold;cursor:pointer;font-family:inherit}
+  .modal button.sec{background:transparent;border:1px solid var(--aco2);color:var(--texto);margin-left:8px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Kit de Estudos · Colégio São José</div>
+  <h1>🎨 Ateliê de Serigrafia</h1>
+  <p>Língua Portuguesa · 6º ano · Verbos e interpretação · Prova em 30/10/2026</p>
+</header>
+
+<div class="wrap">
+  <div class="intro">
+    <h2>👋 Bem-vindo(a) ao ateliê!</h2>
+    <p>As tintas estão prontas e a tela está esticada. Aqui o estudo é a impressão de um <b>pôster de campanha</b>, feito à mão, camada por camada. Na <b>Leitura Guiada</b>, cada parte do conteúdo é uma <b>camada de tinta</b>; cada camada conferida aparece no pôster. Depois vêm a <b>Prova de Cor</b> (Quiz), o <b>Mostruário de Tintas</b> (Resumo) e a <b>Tiragem Final</b> (Simulado). Você vai estudar os <b>verbos</b> (ação, estado e fenômeno da natureza, locução verbal, conjugações, tempo, número e pessoa, modos, oração e sintagmas) e treinar a <b>interpretação</b> de anúncios de propaganda e tiras. Tudo foi feito a partir do seu livro (Ecos Língua Portuguesa 6, Módulo 7, pp. 300–306 e 308–310).</p>
+    <div class="ordem">Trilha: 📖 Leitura Guiada → 🎯 Quiz → 🗺️ Resumo → 📝 Simulado</div>
+    <p style="text-align:center;font-size:.9rem;color:var(--cinza)">Os materiais abrem <b>um por vez, na ordem</b>. Conclua um para destravar o próximo.</p>
+  </div>
+
+  <div class="selo-pais" id="selo-pais">🔓 Trilha liberada pelos pais <button onclick="trancar()">Trancar de novo</button></div>
+
+  <div class="trilha" id="trilha"></div>
+
+  <div class="como">
+    <h2>📌 Como usar este material</h2>
+    <ol>
+      <li><b>Leitura Guiada</b> (10 camadas): leia e <b>escreva</b> as respostas com as suas palavras. Conferir todas as camadas e responder a autoavaliação destrava o Quiz.</li>
+      <li><b>Quiz</b> (18 questões): teste o que entendeu enquanto está fresco. Enviar o Quiz destrava o Resumo.</li>
+      <li><b>Resumo</b>: feche as dúvidas que o Quiz mostrou. Ler até o fim e clicar em "Li o resumo até o fim" destrava o Simulado.</li>
+      <li><b>Simulado</b> (28 questões no estilo da prova): valendo, como se fosse a prova de verdade.</li>
+      <li>Depois do Simulado, <b>tudo fica aberto</b> para revisar quantas vezes quiser até a prova.</li>
+    </ol>
+    <p style="margin-top:8px;font-size:.88rem;color:var(--cinza)">Seu progresso fica salvo automaticamente no navegador deste aparelho. Dá para exportar e importar em cada material.</p>
+  </div>
+
+  <div class="cai">
+    <h2>✨ O que cai na prova (30/10/2026)</h2>
+    <p><b>1. Interpretação de texto:</b> anúncios de propaganda (finalidade, público-alvo, linguagem verbal e não verbal, slogan, elementos do anúncio) e tiras (pp. 300–310).</p>
+    <p><b>2. Verbos:</b> identificar e classificar em <b>ação, estado e fenômeno da natureza</b> (p. 300).</p>
+    <p><b>3. Tempo:</b> presente, pretérito e futuro, e os usos do presente (pp. 301, 304–306).</p>
+    <p><b>4. Modo verbal:</b> indicativo, subjuntivo e imperativo (pp. 302–303, 309–310).</p>
+    <p><b>5. Número e pessoa:</b> singular, plural, 1ª, 2ª e 3ª pessoa (p. 301).</p>
+    <p><b>6. Infinitivo e as três conjugações</b> (-ar, -er/-or, -ir), com locução verbal e formas nominais (pp. 300–301).</p>
+    <p><b>7. Sintagma nominal e verbal</b>, oração e período (pp. 302–303).</p>
+    <p style="color:var(--cinza);font-size:.85rem">Páginas do livro: 300 a 306 e 308 a 310 (a p. 307 não entra).</p>
+  </div>
+
+  <div class="dica">📌 <b>Dica para os pais:</b> o progresso fica no navegador de cada aparelho. Se a Leitura foi feita no tablet e o Quiz vai ser no computador, use 📥 Exportar / 📤 Importar em cada material, ou libere a trilha com o código da família (abaixo).</div>
+
+  <div class="rel">
+    <h2>📊 Relatório para os pais</h2>
+    <p>Digite um dos códigos: <b>MED-…</b> (do Quiz), <b>SIM-…</b> (do Simulado) ou o código fixo da família <b>PAIS-77</b>, que mostra tudo e permite liberar a trilha.</p>
+    <div style="margin-top:8px"><input id="cod-in" placeholder="PAIS-77"><button onclick="verRelatorio()">🔓 Ver relatório</button></div>
+    <div class="out" id="rel-out"></div>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🎨 Boa impressão e boa prova!</div>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button id="modal-ok">Ok</button><button class="sec" id="modal-cancel" onclick="fecharModal()" style="display:none">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='serigrafia_verbos';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖', desc:'10 camadas de tinta com o conteúdo explicado e 3 perguntas em cada, para escrever com as suas palavras. O pôster vai se formando.'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯', desc:'Prova de Cor: 18 questões para testar o que você entendeu. Código MED e gabarito comentado.'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️', desc:'Mostruário de Tintas: tudo o que cai, em cards, cartas para virar, tabelas e post-its. Ótimo para a véspera.'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝', desc:'Tiragem Final: 28 questões no estilo da prova, de múltipla escolha (com textos para interpretar) e de números romanos.'}
+];
+var TOTAL_BLOCOS=10, TOTAL_QUIZ=18, TOTAL_SIM=28;
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function gravarJSON(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function dados(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; return lerJSON(e.chave); }
+function etapaConcluida(id){ var d=dados(id); return !!(d&&d.concluido); }
+function podeAbrir(idx){ if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function fmt(iso){ if(!iso) return ''; var d=new Date(iso); return d.toLocaleDateString('pt-BR')+' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); }
+
+function faltaTexto(idx){ /* o que falta no material ANTERIOR para destravar este */
+  var ant=TRILHA[idx-1]; var d=dados(ant.id)||{};
+  if(ant.id==='leitura'){ var p=d.progresso||{conferidos:0,total:TOTAL_BLOCOS,chkPendentes:0}; var f=p.total-p.conferidos; return f>0? 'Destrava quando você concluir as '+p.total+' camadas da Leitura Guiada (faltam '+f+').' : 'Destrava quando você responder a autoavaliação da Leitura Guiada ('+p.chkPendentes+' ponto(s)).'; }
+  if(ant.id==='quiz'){ var n=d.resp?Object.keys(d.resp).length:0; return 'Destrava quando você enviar o Quiz'+(n?' ('+n+' de '+TOTAL_QUIZ+' respondidas)':'')+'.'; }
+  if(ant.id==='resumo'){ var r=Math.round(d.rolagemMax||0); return 'Destrava quando você ler o Resumo até o fim e clicar em "Li o resumo até o fim"'+(r?' (rolagem: '+r+'%)':'')+'.'; }
+  return 'Destrava quando você concluir '+ant.nome+'.';
+}
+function renderTrilha(){
+  var c=document.getElementById('trilha'); var h='';
+  TRILHA.forEach(function(t,idx){
+    var feito=etapaConcluida(t.id), aberto=podeAbrir(idx);
+    var cls='card', estado='', cadeado='';
+    if(feito){ cls+=' feito'; estado='✅ Concluído'+(dados(t.id).concluidoEm?' · '+fmt(dados(t.id).concluidoEm):''); }
+    else if(aberto){ var novo=(idx>0 && etapaConcluida(TRILHA[idx-1].id) && !trilhaLiberada()); cls+=novo?' novo':' aberto'; estado=novo?'✨ Novo destravado — pode começar!':(idx===0?'▶️ Comece por aqui':'▶️ Aberto'); }
+    else { cls+=' trancado'; cadeado='<span class="cadeado">🔒</span>'; estado='🔒 '+faltaTexto(idx); }
+    h+='<a class="'+cls+'" href="'+(aberto?t.arquivo:'#')+'" '+(aberto?'':'tabindex="-1" aria-disabled="true"')+'>'+cadeado+'<div class="passo">Passo '+(idx+1)+'</div><div class="emoji">'+t.emoji+'</div><h3>'+t.nome+'</h3><p>'+t.desc+'</p><div class="estado">'+estado+'</div></a>';
+  });
+  c.innerHTML=h;
+  document.getElementById('selo-pais').classList.toggle('show', trilhaLiberada());
+}
+
+/* ====== RELATÓRIO PARA OS PAIS ====== */
+function relLeitura(){
+  var e=dados('leitura'); if(!e||!e.blocos) return '<p>Ainda não há registro da Leitura Guiada.</p>';
+  var conf=0,red=0,nao=0,lista=[];
+  Object.keys(e.blocos).forEach(function(i){ var b=e.blocos[i]; if(b.conferido)conf++; if(b.perguntas)Object.keys(b.perguntas).forEach(function(j){ var p=b.perguntas[j]; if(p.red){red++; lista.push('Camada '+(+i+1)+', pergunta '+(+j+1)+': resposta muito parecida com o texto');} if(p.chk)Object.keys(p.chk).forEach(function(k){ if(p.chk[k]==='nao'){nao++; lista.push('Camada '+(+i+1)+', pergunta '+(+j+1)+': marcou "Não" num ponto-chave');} }); }); });
+  return '<b>Camadas conferidas:</b> '+conf+' de '+TOTAL_BLOCOS+'.<br><b>Respostas muito parecidas com o texto (vermelhas):</b> '+red+'.<br><b>Pontos marcados como "Não" na autoavaliação:</b> '+nao+'.'+(lista.length?'<ul style="margin:6px 0 0 18px">'+lista.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>':'');
+}
+function relQuiz(){ var e=dados('quiz'); if(!e) return '<p>Ainda não há registro do Quiz.</p>'; if(!e.enviado) return '<p>Quiz iniciado ('+Object.keys(e.resp||{}).length+' de '+TOTAL_QUIZ+' respondidas), ainda não enviado.</p>'; return '<b>Quiz enviado.</b> Acertos: '+e.acertos+' de '+TOTAL_QUIZ+'. Código: '+e.codigo+'.'; }
+function relResumo(){ var e=dados('resumo'); if(!e) return '<p>Ainda não há registro do Resumo.</p>'; return '<b>Rolagem máxima:</b> '+Math.round(e.rolagemMax||0)+'%. '+(e.concluido?'<b>Lido até o fim</b> em '+fmt(e.concluidoEm)+'.':'Ainda não confirmou a leitura até o fim.'); }
+function relSimulado(){ var e=dados('simulado'); if(!e) return '<p>Ainda não há registro do Simulado.</p>'; if(!e.enviado) return '<p>Simulado iniciado, ainda não enviado.</p>'; return '<b>Simulado enviado.</b> Acertos: '+e.acertos+' de '+(e.objetivas||TOTAL_SIM)+' questões. Código: '+e.codigo+'.'; }
+function relTrilha(){
+  var h='<ul style="margin-left:18px">';
+  TRILHA.forEach(function(t){ var d=dados(t.id); h+='<li>'+t.emoji+' '+t.nome+': '+((d&&d.concluido)?'<span style="color:#8fe0b4">concluído em '+fmt(d.concluidoEm)+'</span>':'<span style="color:#ffb3bc">não concluído</span>')+'</li>'; });
+  h+='</ul>'; var tr=lerJSON(KIT+'_trilha_v1'); if(tr&&tr.liberadoPelosPais) h+='<p>🔓 Trilha liberada pelos pais em '+fmt(tr.liberadoEm)+'.</p>'; else if(tr&&tr.liberadoEm) h+='<p>Trilha foi liberada pelos pais em '+fmt(tr.liberadoEm)+' e trancada de novo em '+fmt(tr.trancadoEm)+'.</p>';
+  return h;
+}
+function verRelatorio(){
+  var v=document.getElementById('cod-in').value.trim().toUpperCase(); var out=document.getElementById('rel-out');
+  var q=dados('quiz')||{}, s=dados('simulado')||{};
+  var tudo=(v==='PAIS-77'), okQ=(q.codigo&&v===q.codigo), okS=(s.codigo&&v===s.codigo);
+  if(!tudo&&!okQ&&!okS){ out.innerHTML='<span style="color:#ffb3bc">Código não reconhecido.</span>'; return; }
+  var h='';
+  if(tudo||okQ) h+='<div class="bloco"><b>📖 Leitura Guiada</b><br>'+relLeitura()+'</div><div class="bloco"><b>🎯 Quiz</b><br>'+relQuiz()+'</div>';
+  if(tudo) h+='<div class="bloco"><b>🗺️ Resumo</b><br>'+relResumo()+'</div>';
+  if(tudo||okS) h+='<div class="bloco"><b>📝 Simulado</b><br>'+relSimulado()+'</div>';
+  if(tudo){ h+='<div class="bloco"><b>🛤️ Trilha</b>'+relTrilha()+'</div>';
+    h+= trilhaLiberada() ? '<button class="liberar" onclick="trancar()">🔒 Trancar a trilha de novo</button>' : '<button class="liberar" onclick="liberar()">🔓 Liberar todos os materiais</button>';
+    h+=' <button class="perigo" onclick="pedirZerarKit()">🗑️ Zerar o kit inteiro</button>';
+  }
+  out.innerHTML=h;
+}
+function liberar(){ var t=lerJSON(KIT+'_trilha_v1')||{}; t.liberadoPelosPais=true; t.liberadoEm=new Date().toISOString(); gravarJSON(KIT+'_trilha_v1',t); renderTrilha(); verRelatorio(); }
+function trancar(){ var t=lerJSON(KIT+'_trilha_v1')||{}; t.liberadoPelosPais=false; t.trancadoEm=new Date().toISOString(); gravarJSON(KIT+'_trilha_v1',t); renderTrilha(); if(document.getElementById('rel-out').innerHTML) verRelatorio(); }
+function pedirZerarKit(){ mostrarModal('Apagar TODO o progresso do kit (leitura, quiz, resumo, simulado e trilha)? O jovem aprendiz volta ao começo, com só a Leitura Guiada aberta.',true,function(){ TRILHA.forEach(function(t){ try{localStorage.removeItem(t.chave);}catch(e){} }); try{localStorage.removeItem(KIT+'_trilha_v1');}catch(e){} renderTrilha(); document.getElementById('rel-out').innerHTML='<span style="color:#8fe0b4">Kit zerado.</span>'; }); }
+function mostrarModal(txt,confirmar,fn){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; var ok=document.getElementById('modal-ok'); ok.textContent=confirmar?'Sim, apagar':'Ok'; ok.onclick=function(){ if(fn) fn(); fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+renderTrilha();
+</script>
+</body>
+</html>

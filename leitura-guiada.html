@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitura Guiada · Ateliê de Serigrafia · Português 6º</title>
+<style>
+  :root{
+    --fundo:#15161c; --fundo2:#1e2029; --aco:#30333f; --aco2:#454959;
+    --laranja:#ff7a2f; --azul:#4a9df8; --verde:#3ddc84; --vermelho:#ff5d6c;
+    --amarelo:#ffd23f; --texto:#f3ece0; --cinza:#aaa49a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:
+    radial-gradient(1100px 480px at 50% -10%,#3a1d10,#15161c 60%),var(--fundo);
+    color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#26160e,#4d2812);padding:26px 18px;text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--laranja);position:relative;overflow:hidden}
+  header:before{content:"";position:absolute;left:50%;top:50%;width:220px;height:220px;margin:-110px 0 0 -110px;border:3px solid rgba(255,255,255,.08);border-radius:50%}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#ffd7b5;text-transform:uppercase;position:relative}
+  header h1{font-size:1.5rem;margin:6px 0 2px;position:relative}
+  header p{color:#f3dcc8;font-size:.92rem;position:relative}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--fundo2);color:var(--texto);text-decoration:none;padding:7px 12px;
+    border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--laranja);color:#2a1300;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--laranja);font-size:1.1rem;margin-bottom:8px}
+  .intro ol{margin:8px 0 0 20px}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+    background:var(--fundo2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--fundo);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .mini:hover{background:#222b3e}
+  /* placar */
+  .placar{background:#0a0d13;border:2px solid #2b3446;border-radius:16px;padding:14px;margin-bottom:18px;text-align:center}
+  .placar h3{color:var(--amarelo);font-size:.95rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+  .placar p.sub{color:var(--cinza);font-size:.8rem;margin-bottom:10px}
+  .placar .pts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .placar .pt{width:58px;padding:6px 0;border-radius:10px;background:#141a26;border:1px solid var(--aco2);cursor:pointer;font-family:'Courier New',monospace;font-weight:bold;color:#56607a}
+  .placar .pt small{display:block;font-family:'Segoe UI',sans-serif;font-weight:normal;font-size:.62rem}
+  .placar .pt.aberto{color:var(--azul);border-color:var(--azul)}
+  .placar .pt.feito{color:#0b1a10;background:var(--verde);border-color:var(--verde);box-shadow:0 0 10px rgba(61,220,132,.5)}
+  .placar .total{font-family:'Courier New',monospace;font-size:1.6rem;color:var(--laranja);margin-top:8px}
+  .bloco{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;margin-bottom:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.35)}
+  .bloco.travado{opacity:.55}
+  .bloco-cab{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#2a1c10,#1b2333);border-bottom:1px solid var(--aco)}
+  .bloco-cab .num{background:var(--laranja);color:#2a1300;font-weight:bold;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bloco.gb .bloco-cab .num{background:var(--azul);color:#04213d}
+  .bloco-cab h3{font-size:1.06rem;color:#fff}
+  .bloco-cab .porto{font-size:.7rem;color:var(--cinza);letter-spacing:1px;text-transform:uppercase}
+  .bloco-corpo{padding:16px}
+  .texto p{margin-bottom:10px}
+  .texto ul{margin:0 0 10px 20px}
+  .texto li{margin-bottom:6px}
+  .texto .destaque{color:var(--laranja);font-weight:bold}
+  .bloco.gb .texto .destaque{color:var(--azul)}
+  .olhar{background:#1d2436;border-left:3px solid var(--amarelo);padding:8px 12px;margin:0 0 10px;border-radius:0 8px 8px 0;font-size:.92rem}
+  .olhar b{color:var(--amarelo)}
+  .cadeado{padding:22px 16px;text-align:center;color:var(--cinza);font-size:.9rem}
+  .perg{background:#131925;border:1px solid var(--aco);border-radius:12px;padding:12px;margin-top:14px}
+  .perg.red{border-color:var(--vermelho);box-shadow:0 0 0 1px var(--vermelho)}
+  .perg .tag{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:6px}
+  .tag.conc{background:#14365a;color:#a9d6ff}
+  .tag.apl{background:#1d4530;color:#a7e0bf}
+  .perg label{display:block;font-weight:600;margin-bottom:8px}
+  .perg textarea{width:100%;min-height:70px;background:#0a0e16;color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:9px;font-family:inherit;font-size:.95rem;resize:vertical}
+  .aviso{margin-top:8px;padding:9px 11px;border-radius:8px;font-size:.85rem;display:none}
+  .aviso.amarelo{display:block;background:#4a3512;border:1px solid var(--laranja);color:#ffe2c9}
+  .aviso.vermelho{display:block;background:#4a1720;border:1px solid var(--vermelho);color:#ffc9cf}
+  .modelo{margin-top:10px;padding:10px 12px;background:#0e2b1f;border:1px solid var(--verde);border-radius:8px;font-size:.9rem;display:none}
+  .modelo.show{display:block}
+  .modelo .lab{color:#8fe0b4;font-weight:bold;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+  .chk{margin-top:10px;font-size:.88rem}
+  .chk .item{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+  .chk .item span{flex:1;min-width:180px}
+  .chk .simnao button{border:1px solid var(--aco2);background:#0a0e16;color:var(--texto);border-radius:6px;padding:4px 10px;margin-left:4px;font-size:.8rem}
+  .chk .simnao button.sim.ativo{background:var(--verde);border-color:var(--verde);color:#04231a}
+  .chk .simnao button.nao.ativo{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+  .conferir{margin-top:14px;background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:11px 18px;font-size:1rem;font-weight:bold;width:100%}
+  .conferir:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .status-bloco{margin-top:10px;text-align:center;font-weight:bold;font-size:.95rem}
+  .prox{margin-top:12px;text-align:center}
+  .prox a{color:var(--azul);text-decoration:none;font-weight:bold}
+  .peg{background:#3a1420;border:2px solid var(--vermelho);border-radius:16px;padding:16px;margin-top:20px}
+  .peg h3{color:#ffb3bc;margin-bottom:10px}
+  .peg ol{margin-left:20px}
+  .peg li{margin-bottom:7px}
+  .cobertura{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-top:18px}
+  .cobertura h3{color:var(--azul);margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{border:1px solid var(--aco);padding:7px 9px;text-align:left}
+  th{background:#1f2738}
+  .revisar{background:#3a2a10;border:2px solid var(--laranja);border-radius:16px;padding:16px;margin-top:18px}
+  .revisar h3{color:var(--laranja);margin-bottom:8px}
+  .revisar ul{margin-left:18px}
+  .relatorio{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin-top:18px;font-size:.9rem}
+  .relatorio h3{color:var(--azul);margin-bottom:8px}
+  .trilha-fim{background:linear-gradient(120deg,#1b2a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#8fe0b4;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#262d3e;color:#6f7896;pointer-events:none}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--azul);border-radius:14px;padding:20px;max-width:420px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal button{background:var(--azul);color:#04213d;border:none;border-radius:8px;padding:9px 16px;font-weight:bold}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Ateliê de Serigrafia · Português 6º ano · Colégio São José</div>
+  <h1>📖 Leitura Guiada</h1>
+  <p>Verbos e interpretação · Ecos Língua Portuguesa 6 (SM) · Módulo 7 · pp. 300–306 e 308–310</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a class="on" href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html" data-etapa="quiz">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>🎨 Como funciona o ateliê</h2>
+    <p>No ateliê de serigrafia, um pôster de campanha é impresso <b>camada por camada</b>: cada cor passa com o rodo por cima da anterior até a imagem aparecer inteira. Esta leitura tem <b>10 camadas</b>. As oito primeiras ensinam o <b>verbo</b> (o que ele expressa, locução verbal, conjugações, tempo, pessoa e número, modos, oração e sintagmas, usos do presente). As duas últimas mostram o verbo <b>trabalhando na propaganda</b> e treinam a <b>interpretação</b>. Em cada camada, leia o texto e <b>escreva com as suas palavras</b> as respostas das 3 perguntas.</p>
+    <ol>
+      <li>Leia a camada com calma. Tudo aqui vem do seu livro.</li>
+      <li>Responda as 3 perguntas <b>escrevendo</b>. Copiar o texto não vale.</li>
+      <li>Clique em <b>Conferir</b>: aparecem a resposta-modelo e uma autoavaliação Sim/Não.</li>
+      <li>Com as 10 camadas conferidas e a autoavaliação respondida, o <b>🎯 Quiz destrava</b>.</li>
+    </ol>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div class="placar">
+    <h3>🖼️ Pôster da Campanha</h3>
+    <p class="sub">Clique numa camada para ir até ela. Verde = impressa · Azul = aberta.</p>
+    <div class="pts" id="pts"></div>
+    <div class="total" id="placar-total">00 / 10</div>
+  </div>
+
+  <div id="blocos"></div>
+
+  <div class="peg">
+    <h3>⚠️ 10 Pegadinhas da Prova (não caia nelas!)</h3>
+    <ol>
+      <li><b>Locução verbal:</b> o verbo principal é sempre o <b>ÚLTIMO</b>. Só o <b>auxiliar</b> é conjugado (em <i>estava chovendo</i>, o principal é <i>chovendo</i>).</li>
+      <li><b>Pôr</b> (e os verbos em <b>-or</b>, como <i>compor</i>) são da <b>2ª conjugação</b>, junto com os terminados em <b>-er</b>. Não existe “4ª conjugação”.</li>
+      <li>Para achar a conjugação de um verbo conjugado, volte ao <b>infinitivo</b>: <i>é</i> → <b>ser</b> → 2ª conjugação.</li>
+      <li><b>Pretérito</b> e <b>passado</b> são a mesma coisa.</li>
+      <li>Presente <b>nem sempre</b> é “agora”: pode ser hábito, verdade universal, estado, fato passado contado com vivacidade (biografia) ou título de notícia (valor de novidade).</li>
+      <li><b>Indicativo</b> = certeza. <b>Subjuntivo</b> = dúvida, possibilidade, hipótese (“Seria ótimo se <b>divulgassem</b>...”).</li>
+      <li><b>Imperativo</b> não é só ordem: também é <b>pedido</b> (“Por favor, seja legal”), <b>conselho</b>, <b>instrução</b> ou <b>convite</b>.</li>
+      <li>Para contar orações, conte os verbos — mas uma <b>locução verbal</b> conta como <b>um</b> só (“vão brincar” = 1 oração).</li>
+      <li>Verbo de <b>estado</b> (ser, estar...) não mostra ninguém fazendo nada: ele liga alguém a uma característica. <b>Chover</b> é <b>fenômeno da natureza</b>, não ação.</li>
+      <li><b>Sintagma nominal</b> = substantivo + termos que concordam com ele. <b>Sintagma verbal</b> = o verbo é o núcleo (“<b>serão realizadas</b> | <b>eleições municipais</b>”).</li>
+    </ol>
+  </div>
+
+  <div class="cobertura">
+    <h3>🧭 Cobertura: Tópico → Camada</h3>
+    <table>
+      <thead><tr><th>Tópico da prova</th><th>Página do livro</th><th>Camada</th></tr></thead>
+      <tbody>
+        <tr><td>Verbo: ação, estado e fenômeno da natureza; flexões (tempo, modo, número, pessoa)</td><td>300</td><td>1</td></tr>
+        <tr><td>Locução verbal; formas nominais (infinitivo, gerúndio, particípio); tira (atividade 1)</td><td>300</td><td>2</td></tr>
+        <tr><td>Conjugação: -ar, -er/-or, -ir</td><td>301 e 310</td><td>3</td></tr>
+        <tr><td>Flexão de tempo: presente, passado/pretérito, futuro (atividades 2 e 3)</td><td>301</td><td>4</td></tr>
+        <tr><td>Flexão de número e pessoa (eu organizo... eles organizam); concordância (Linguagem do cartaz)</td><td>301 e 308</td><td>5</td></tr>
+        <tr><td>Modos verbais: indicativo, subjuntivo, imperativo (atividade 4 da p. 301; tira da p. 310)</td><td>302 e 310</td><td>6</td></tr>
+        <tr><td>Oração, período, sintagma nominal e verbal (atividades 1 e 5)</td><td>302–303</td><td>7</td></tr>
+        <tr><td>Usos do presente do indicativo; biografia; títulos de notícia</td><td>304–306</td><td>8</td></tr>
+        <tr><td>Modos verbais na propaganda (anúncio da mata atlântica; Outubro Rosa)</td><td>303 e 309–310</td><td>9</td></tr>
+        <tr><td>Interpretação: finalidade, público-alvo, linguagem verbal e não verbal, elementos do anúncio, humor nas tiras</td><td>306, 308–310</td><td>10</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:8px;font-size:.85rem;color:var(--cinza)">A p. 307 não faz parte do conteúdo da prova. Os 7 tópicos do recado da escola (interpretação; verbos de ação, estado e fenômeno; tempo; modo; número e pessoa; infinitivo e conjugações; sintagma nominal e verbal) estão todos nas camadas acima.</p>
+  </div>
+
+  <div class="revisar" id="revisar" style="display:none">
+    <h3>🔁 Para revisar antes da prova</h3>
+    <ul id="revisar-lista"></ul>
+  </div>
+
+  <div class="relatorio">
+    <h3>📊 Para os pais (resumo desta leitura)</h3>
+    <div id="rel-conteudo">Assim que o jovem aprendiz for conferindo as camadas, o resumo aparece aqui.</div>
+  </div>
+
+  <div class="trilha-fim" id="trilha-fim">
+    <h3>🔒 Próxima etapa: Quiz</h3>
+    <p id="trilha-fim-txt">O Quiz destrava quando as 10 camadas estiverem conferidas e a autoavaliação respondida.</p>
+    <a class="btn off" id="btn-prox" href="quiz.html">🎯 Ir para o Quiz</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🎨 Boa prova!</div>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='serigrafia_verbos';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); links[i].setAttribute('title','Ainda trancado'); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+
+/* ====== DADOS DAS CAMADAS (conteúdo real do livro — Ecos Língua Portuguesa 6, SM, Módulo 7, pp. 300–306 e 308–310) ====== */
+var BLOCOS = [
+ {
+  "porto": "Camada 1 · Livro p. 300",
+  "emoji": "🎨",
+  "u": "ga",
+  "titulo": "O que é verbo: ação, estado ou fenômeno da natureza",
+  "texto": [
+   "Toda campanha precisa de palavras que <b>mexem</b>. Na gramática, essas palavras são os <span class='destaque'>verbos</span>. O livro explica que o verbo pode expressar três coisas: uma <b>ação</b>, um <b>estado</b> ou um <b>fenômeno da natureza</b>.",
+   "Veja o exemplo do livro, tirado de uma propaganda da Justiça Eleitoral: <i>“As mulheres são mais da metade da população, mas ocupam menos de 10% dos cargos políticos.”</i> O verbo <b>ocupam</b> mostra uma <b>ação</b> (algo que as mulheres fazem). Já o verbo <b>são</b> não mostra ação nenhuma: ele <b>liga</b> a palavra <i>mulheres</i> a uma característica (ser metade da população). Isso é um verbo de <b>estado</b>.",
+   "E quando ninguém faz nada, mas a natureza “faz”? Em <i>vai chover</i>, o verbo <b>chover</b> indica um <b>fenômeno da natureza</b>.",
+   "<div class='olhar'><b>Mais um detalhe da p. 300:</b> o verbo muda de forma (se <b>flexiona</b>) para mostrar <b>tempo</b> (presente, passado e futuro), <b>modo</b> (indicativo, subjuntivo e imperativo), <b>número</b> (singular e plural) e <b>pessoa</b> (1ª, 2ª ou 3ª). Cada uma dessas mudanças vai ganhar uma camada própria neste pôster.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Com as suas palavras: quais são as três coisas que um verbo pode expressar? Dê um exemplo de cada (pode inventar).",
+    "modelo": "Ação (ex.: correr, pintar), estado (ex.: ser, estar, que ligam alguém a uma característica) e fenômeno da natureza (ex.: chover).",
+    "chk": [
+     "Citei ação, estado e fenômeno da natureza?",
+     "Dei um exemplo para cada um?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Classifique o verbo de cada frase em ação, estado ou fenômeno da natureza: (a) “Ontem choveu a tarde toda.” (b) “Meu irmão pintou o muro.” (c) “A menina está cansada.”",
+    "modelo": "(a) choveu = fenômeno da natureza; (b) pintou = ação; (c) está = estado (liga “a menina” à característica “cansada”).",
+    "chk": [
+     "Acertei que “choveu” é fenômeno da natureza?",
+     "Acertei que “pintou” é ação?",
+     "Acertei que “está” é estado?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Invente uma frase sua em que um verbo de estado (como ser ou estar) ligue um substantivo a uma característica. Depois explique por que esse verbo NÃO é de ação.",
+    "modelo": "Ex.: “O cartaz está pronto.” O verbo “está” liga o substantivo “cartaz” à característica “pronto”; ninguém está fazendo nada, por isso é verbo de estado.",
+    "chk": [
+     "Minha frase tem um verbo de estado ligando um substantivo a uma característica?",
+     "Expliquei que ninguém faz nada (não é ação)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Camada 2 · Livro p. 300",
+  "emoji": "🖌️",
+  "u": "ga",
+  "titulo": "Locução verbal e as formas nominais",
+  "texto": [
+   "Às vezes, um verbo sozinho não dá conta. Juntamos <b>dois ou mais verbos</b> e eles funcionam como um só. O livro chama isso de <span class='destaque'>locução verbal</span>. Exemplo: <b>vai chover</b>.",
+   "Numa locução há dois papéis. O <b>verbo auxiliar</b> (em <i>vai chover</i>, é o <b>vai</b>) e o <b>verbo principal</b> (o <b>chover</b>). Guarde esta regra do livro: o verbo principal <b>sempre é o último</b> da locução.",
+   "Outra regra: na locução, <b>só o auxiliar é conjugado</b> (muda conforme a pessoa e o tempo). O principal fica parado numa das <b>formas nominais</b> do verbo:",
+   "<ul><li><b>Infinitivo</b>: trabalhar, chover, dormir → “[...] <b>vai trabalhar</b> off-line.”</li><li><b>Gerúndio</b>: trabalhando, chovendo, dormindo → “Na noite de ontem <b>estava chovendo</b>.”</li><li><b>Particípio</b>: trabalhado, chovido, dormido → “O compositor <b>havia dormido</b> durante a chuva.”</li></ul>",
+   "<div class='olhar'><b>Na tira da p. 300</b>, a personagem quer trabalhar sem internet e diz que a produtividade “vai ser” super alta. Depois tenta ver se “vai chover” e dá erro, porque está sem internet. Repare: o <b>vai</b> das locuções ajuda a passar a ideia de <b>futuro</b>.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Numa locução verbal, como você descobre qual é o verbo principal? E o que acontece com ele?",
+    "modelo": "O verbo principal é sempre o último da locução. Ele não é conjugado: fica numa forma nominal (infinitivo, gerúndio ou particípio). Quem é conjugado é o auxiliar.",
+    "chk": [
+     "Disse que o principal é o último?",
+     "Disse que ele fica numa forma nominal (e o auxiliar é que é conjugado)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Nas frases “Nós vamos estudar à tarde” e “Os meninos estavam correndo”, aponte o verbo auxiliar, o verbo principal e a forma nominal do principal.",
+    "modelo": "Na 1ª: auxiliar = vamos; principal = estudar (infinitivo). Na 2ª: auxiliar = estavam; principal = correndo (gerúndio).",
+    "chk": [
+     "Acertei os auxiliares (vamos / estavam)?",
+     "Acertei os principais e as formas (estudar = infinitivo; correndo = gerúndio)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Reescreva a frase “O cachorro dormiu” usando uma locução verbal com o verbo principal no particípio (dica: o livro usa “havia”).",
+    "modelo": "“O cachorro havia dormido.” (havia = auxiliar; dormido = principal no particípio)",
+    "chk": [
+     "Usei dois verbos juntos (auxiliar + principal)?",
+     "O principal ficou no particípio (dormido)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Camada 3 · Livro p. 301",
+  "emoji": "🧪",
+  "u": "ga",
+  "titulo": "As três conjugações: -ar, -er/-or e -ir",
+  "texto": [
+   "No ateliê, as tintas ficam separadas em três potes. Com os verbos é parecido: o livro diz que, na língua portuguesa, os verbos se dividem em <span class='destaque'>três conjugações</span>, de acordo com a <b>terminação</b>.",
+   "<ul><li><b>1ª conjugação</b>: verbos terminados em <b>-ar</b> → amar, estudar.</li><li><b>2ª conjugação</b>: verbos terminados em <b>-er</b> e em <b>-or</b> → escrever, pôr.</li><li><b>3ª conjugação</b>: verbos terminados em <b>-ir</b> → partir, dormir.</li></ul>",
+   "Repare que a terminação que conta é a do verbo no <b>infinitivo</b> (a forma terminada em -r, como no quadro da camada anterior: trabalhar, chover, dormir).",
+   "<div class='olhar'><b>Como fazer quando o verbo está conjugado?</b> Volte ao infinitivo. Na p. 310 o livro pergunta a que conjugação pertencem <b>é</b> e <b>vencer</b>: <i>é</i> vem de <b>ser</b> e <i>vencer</i> termina em -er, então os dois são da <b>2ª conjugação</b>. E atenção ao <b>pôr</b>: ele termina em <b>-or</b> e, mesmo assim, é da <b>2ª</b>.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Com as suas palavras: como se descobre a conjugação de um verbo?",
+    "modelo": "Olhando a terminação do verbo no infinitivo: -ar é 1ª conjugação, -er e -or são 2ª, e -ir é 3ª.",
+    "chk": [
+     "Disse que é pela terminação (no infinitivo)?",
+     "Liguei certo: -ar = 1ª, -er/-or = 2ª, -ir = 3ª?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Diga a conjugação de cada verbo: dançar, beber, abrir, compor.",
+    "modelo": "dançar = 1ª (-ar); beber = 2ª (-er); abrir = 3ª (-ir); compor = 2ª (-or, igual a pôr).",
+    "chk": [
+     "Acertei dançar (1ª) e abrir (3ª)?",
+     "Acertei que compor, terminado em -or, é da 2ª?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Na frase “O povo sobrevivia sem internet”, o verbo está conjugado. Qual é o infinitivo dele e de que conjugação ele é?",
+    "modelo": "O infinitivo é “sobreviver”. Termina em -er, então é da 2ª conjugação.",
+    "chk": [
+     "Achei o infinitivo “sobreviver”?",
+     "Disse que é da 2ª conjugação?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Camada 4 · Livro p. 301",
+  "emoji": "⏳",
+  "u": "gb",
+  "titulo": "Tempo: presente, pretérito e futuro",
+  "texto": [
+   "O verbo também muda conforme o <span class='destaque'>tempo</span> que se quer expressar. O livro mostra três tempos, sempre comparando com o <b>momento em que se fala</b>:",
+   "<ul><li><b>Presente</b>: o momento em que se fala, ou uma ação permanente → “Ela <b>sobrevive</b> sem internet.”</li><li><b>Passado</b> ou <b>pretérito</b>: antes do momento em que se fala → “Ela <b>sobrevivia</b> sem internet.”</li><li><b>Futuro</b>: depois do momento em que se fala → “Ela <b>sobreviverá</b> sem internet.”</li></ul>",
+   "Atenção ao nome: <b>pretérito</b> é só outro nome para <b>passado</b>. Não são dois tempos diferentes.",
+   "<div class='olhar'><b>Na tira da p. 300</b>, a personagem pergunta como o povo “sobrevivia” antes da internet. O verbo <b>sobrevivia</b> fala de uma época <b>anterior</b> ao momento da fala: está no <b>pretérito</b>.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Explique a diferença entre presente, pretérito e futuro usando a ideia do “momento em que se fala”.",
+    "modelo": "Presente é o próprio momento em que se fala (ou algo permanente); pretérito é antes desse momento; futuro é depois desse momento.",
+    "chk": [
+     "Expliquei o presente como o momento da fala?",
+     "Disse que pretérito é antes e futuro é depois?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Reescreva a frase “Eu organizo a festa” no pretérito e depois no futuro.",
+    "modelo": "Pretérito: “Eu organizava a festa” (ou “Eu organizei a festa”). Futuro: “Eu organizarei a festa.”",
+    "chk": [
+     "Escrevi uma forma no passado (organizava ou organizei)?",
+     "Escrevi a forma do futuro (organizarei)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Diga o tempo do verbo em cada frase: (a) “Amanhã choverá.” (b) “Ontem choveu.” (c) “Agora chove.”",
+    "modelo": "(a) futuro; (b) pretérito (passado); (c) presente.",
+    "chk": [
+     "Acertei o futuro e o pretérito?",
+     "Acertei o presente?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Camada 5 · Livro p. 301",
+  "emoji": "👥",
+  "u": "gb",
+  "titulo": "Número e pessoa do verbo",
+  "texto": [
+   "O verbo também combina com <b>quem</b> faz a ação. O livro explica que os verbos se flexionam conforme as <span class='destaque'>pessoas do discurso</span> (<b>primeira</b>, <b>segunda</b> ou <b>terceira</b>) e conforme o <span class='destaque'>número</span>, isto é, se se referem a uma pessoa só (<b>singular</b>) ou a mais de uma (<b>plural</b>).",
+   "Olhe o exemplo do livro com o verbo <b>organizar</b>, no presente:",
+   "<div class='olhar'><b>Singular:</b> eu organiz<b>o</b> · tu organiz<b>as</b> · ele organiz<b>a</b><br><b>Plural:</b> nós organiz<b>amos</b> · vós organiz<b>ais</b> · eles organiz<b>am</b></div>",
+   "Na ordem do livro: <b>eu</b>, <b>tu</b>, <b>ele</b> são a 1ª, a 2ª e a 3ª pessoa do <b>singular</b>; <b>nós</b>, <b>vós</b>, <b>eles</b> são a 1ª, a 2ª e a 3ª pessoa do <b>plural</b>. Repare que o <b>final</b> do verbo muda em cada pessoa. Na produção do cartaz (p. 308), o livro pede justamente para conferir se as formas verbais <b>concordam em número e pessoa</b> com aquilo a que se referem."
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "O que quer dizer que o verbo se flexiona em número e pessoa? Explique com as suas palavras.",
+    "modelo": "Que o final do verbo muda para combinar com quem faz a ação: a pessoa (1ª, 2ª ou 3ª) e o número (singular, se é um só; plural, se são vários).",
+    "chk": [
+     "Falei da pessoa (1ª, 2ª, 3ª)?",
+     "Falei do número (singular/plural)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Seguindo o modelo do livro (eu organizo, nós organizamos...), escreva o verbo “estudar” no presente com eu, nós e eles.",
+    "modelo": "eu estudo · nós estudamos · eles estudam.",
+    "chk": [
+     "Escrevi “eu estudo” e “nós estudamos”?",
+     "Escrevi “eles estudam”?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Na frase “Nós organizamos a campanha”, em que pessoa e número está o verbo? Como fica a frase se trocarmos “nós” por “ela”?",
+    "modelo": "Está na 1ª pessoa do plural. Com “ela”: “Ela organiza a campanha” (3ª pessoa do singular).",
+    "chk": [
+     "Disse 1ª pessoa do plural?",
+     "Reescrevi com “ela organiza”?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Camada 6 · Livro p. 302",
+  "emoji": "🎭",
+  "u": "gb",
+  "titulo": "Modos verbais: indicativo, subjuntivo e imperativo",
+  "texto": [
+   "Quem fala também mostra uma <b>atitude</b> sobre o que diz: tem certeza? Tem dúvida? Está mandando? O livro chama de <span class='destaque'>modos verbais</span> as diferentes formas que o verbo assume para mostrar essa atitude.",
+   "<ul><li><b>Indicativo</b>: de modo geral, expressa <b>certeza, convicção</b> → “A propaganda <b>divulgou</b> a campanha de vacinação.”</li><li><b>Subjuntivo</b>: de modo geral, expressa <b>dúvida, possibilidade ou hipótese</b> → “Seria ótimo se <b>divulgassem</b> a campanha.”</li><li><b>Imperativo</b>: expressa <b>ordem, pedido, conselho, instrução ou convite</b> → “<b>Divulgue</b> a campanha de vacinação.”</li></ul>",
+   "Repare que é o <b>mesmo verbo</b> (divulgar) nos três exemplos. O que muda é a atitude de quem fala.",
+   "<div class='olhar'><b>Pegadinha da p. 310:</b> o imperativo não é só “ordem”. Numa tira, a filha diz à mãe: “Por favor, seja legal, mãe.” O verbo <b>seja</b> está no imperativo, mas, com o “por favor”, é um <b>pedido</b>.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Com as suas palavras: o que cada modo verbal expressa (indicativo, subjuntivo e imperativo)?",
+    "modelo": "Indicativo: certeza, convicção. Subjuntivo: dúvida, possibilidade ou hipótese. Imperativo: ordem, pedido, conselho, instrução ou convite.",
+    "chk": [
+     "Acertei o indicativo (certeza)?",
+     "Acertei o subjuntivo (dúvida/hipótese) e o imperativo (ordem, pedido, conselho...)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Diga o modo do verbo em cada frase: (a) “Feche a porta, por favor.” (b) “Talvez eles venham amanhã.” (c) “O ônibus chegou cedo.”",
+    "modelo": "(a) feche = imperativo (pedido); (b) venham = subjuntivo (dúvida, possibilidade); (c) chegou = indicativo (certeza).",
+    "chk": [
+     "Acertei (a) imperativo?",
+     "Acertei (b) subjuntivo e (c) indicativo?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "A frase “Você recicla o lixo.” está no indicativo. Transforme-a numa frase no imperativo, como um slogan de propaganda. Que atitude o seu slogan expressa?",
+    "modelo": "“Recicle o lixo!” — expressa um conselho/convite (ou uma ordem) para o leitor agir.",
+    "chk": [
+     "Usei o imperativo (recicle)?",
+     "Disse a atitude (ordem, conselho ou convite)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Camada 7 · Livro pp. 302–303",
+  "emoji": "🧩",
+  "u": "gb",
+  "titulo": "Oração, período e sintagmas (nominal e verbal)",
+  "texto": [
+   "Agora, vamos olhar a frase inteira. O livro define <span class='destaque'>oração</span> como um enunciado com sentido organizado em torno de <b>um verbo</b> ou de <b>uma locução verbal</b>. Então, para contar as orações, conte os verbos (lembrando que uma locução, como <i>vão brincar</i>, conta como <b>um</b> só).",
+   "Já o <span class='destaque'>período</span> é uma frase organizada com <b>uma ou mais orações</b>. No trecho da Justiça Eleitoral “<i>Mulheres, participem mais da política e façam a diferença na vida da sua cidade</i>”, há <b>um período</b> com <b>duas orações</b> (uma com <i>participem</i>, outra com <i>façam</i>).",
+   "Dentro da oração, as palavras se juntam em blocos chamados <span class='destaque'>sintagmas</span>. O <b>sintagma verbal</b> tem como núcleo o <b>verbo</b>. O <b>sintagma nominal</b> costuma reunir um <b>substantivo</b> e os termos que <b>concordam</b> com ele.",
+   "<div class='olhar'><b>Exemplo do livro:</b> “[...] serão realizadas eleições municipais.” → sintagma verbal: <b>serão realizadas</b>; sintagma nominal: <b>eleições municipais</b> (o substantivo <i>eleições</i> + o adjetivo <i>municipais</i>, que se refere a ele).</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Explique a diferença entre oração e período.",
+    "modelo": "Oração é um enunciado organizado em torno de um verbo ou de uma locução verbal. Período é a frase inteira, que pode ter uma ou mais orações.",
+    "chk": [
+     "Disse que a oração gira em torno de um verbo/locução?",
+     "Disse que o período pode ter uma ou mais orações?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Quantas orações há em cada frase? (a) “Abra o livro e leia o texto.” (b) “As crianças vão brincar no parque.” Explique como contou.",
+    "modelo": "(a) Duas orações, porque há dois verbos: abra e leia. (b) Uma oração, porque “vão brincar” é uma locução verbal e conta como um verbo só.",
+    "chk": [
+     "Acertei 2 orações em (a)?",
+     "Acertei 1 oração em (b), por causa da locução?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Na frase “Os cartazes coloridos foram afixados”, qual é o sintagma nominal e qual é o sintagma verbal?",
+    "modelo": "Sintagma nominal: “Os cartazes coloridos” (substantivo cartazes + termos que concordam com ele). Sintagma verbal: “foram afixados”.",
+    "chk": [
+     "Separei o sintagma nominal (os cartazes coloridos)?",
+     "Separei o sintagma verbal (foram afixados)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Camada 8 · Livro pp. 304–306",
+  "emoji": "📰",
+  "u": "gb",
+  "titulo": "Os usos do presente do indicativo",
+  "texto": [
+   "O <span class='destaque'>presente do indicativo</span> não serve só para o que está acontecendo agora. O livro mostra que ele também apresenta <b>situações habituais</b>, rotineiras, que se repetem e fazem parte do dia a dia.",
+   "Numa tira de Armandinho (p. 304), o menino diz que todo mundo julga a tudo e a todos, a todo momento, e depois até muda de opinião. Os verbos <b>julgamos</b> e <b>mudamos</b> estão no presente, mas não falam de um instante só: falam de algo que <b>se repete</b>.",
+   "O quadro do livro resume: o presente do indicativo é usado para <b>ações habituais</b>, <b>verdades universais</b>, <b>estados permanentes ou temporários</b> e também para <b>ações no momento em que ocorrem</b>.",
+   "<div class='olhar'><b>Dois usos especiais (pp. 305–306):</b> numa <b>biografia</b>, fatos do passado podem ser contados no presente (“em 1980, publica seu primeiro livro”), como se acontecessem agora. Isso dá <b>vivacidade</b> às ações. E nos <b>títulos de notícia</b> (“Sesc expõe acervo...”, “Napoli vence Lecce...”) o presente dá <b>valor de novidade</b>.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Cite dois usos do presente do indicativo além de falar do que está acontecendo agora.",
+    "modelo": "Por exemplo: ações habituais (que se repetem), verdades universais, estados permanentes ou temporários, fatos passados contados com vivacidade (biografia) e títulos de notícia (valor de novidade).",
+    "chk": [
+     "Citei pelo menos dois usos diferentes do momento da fala?",
+     "Os usos que citei estão no quadro do livro?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Diga se o presente indica hábito ou ação no momento da fala: (a) “Toda sexta-feira a turma joga bola.” (b) “Neste instante, o goleiro defende o pênalti!”",
+    "modelo": "(a) hábito — algo que se repete toda sexta; (b) ação no momento da fala — está acontecendo neste instante.",
+    "chk": [
+     "Acertei (a) hábito?",
+     "Acertei (b) momento da fala?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Crie um título de notícia, com o verbo no presente, sobre algo que já aconteceu na sua escola. Por que os jornais usam o presente nos títulos?",
+    "modelo": "Ex.: “Escola inaugura nova biblioteca.” O presente dá valor de novidade à notícia.",
+    "chk": [
+     "Meu título tem verbo no presente?",
+     "Expliquei que o presente dá valor de novidade?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Camada 9 · Livro pp. 303 e 309",
+  "emoji": "📢",
+  "u": "ga",
+  "titulo": "O verbo na propaganda",
+  "texto": [
+   "Agora o pôster ganha cor de campanha. Na p. 303, o livro mostra um anúncio de uma organização ambiental com a pergunta “quanto de mata atlântica <b>existe</b> em você?” e o convite: “<b>Aprenda</b> e <b>compartilhe</b> para <b>conservarmos</b> a mata atlântica. <b>Participe</b> do quiz e <b>divulgue</b>!”, além de “<b>Clique</b> ou <b>acesse</b>” o site.",
+   "Separando por modo: <b>existe</b> está no <b>indicativo</b>; <b>conservarmos</b> está no <b>subjuntivo</b>; e <b>aprenda, compartilhe, participe, divulgue, clique, acesse</b> estão no <b>imperativo</b>. O imperativo <b>predomina</b>.",
+   "Por quê? Porque o imperativo expressa ordem, pedido, conselho, instrução ou <b>convite</b>, e a propaganda quer que o leitor <b>faça alguma coisa</b>: aprender, participar, divulgar.",
+   "<div class='olhar'><b>Outubro Rosa (p. 309):</b> o slogan da campanha é “<b>Lute</b> como uma mulher”, e o texto diz “Tenha coragem e previna-se”. O verbo <b>lute</b> está no imperativo, o modo típico dos anúncios de propaganda.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Por que o modo imperativo aparece tanto nos anúncios de propaganda?",
+    "modelo": "Porque a propaganda quer convencer o leitor a agir, e o imperativo expressa ordem, pedido, conselho, instrução ou convite.",
+    "chk": [
+     "Disse que a propaganda quer que o leitor faça algo?",
+     "Liguei isso ao que o imperativo expressa?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "No trecho “Tenha coragem e previna-se. O diagnóstico precoce é um caminho importante para vencer o câncer.”, quais verbos estão no imperativo? E o verbo “é”, em que modo está?",
+    "modelo": "No imperativo: tenha e previna(-se). O verbo “é” está no presente do indicativo (expressa uma certeza).",
+    "chk": [
+     "Achei “tenha” e “previna-se” no imperativo?",
+     "Disse que “é” está no indicativo?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Crie um slogan com um verbo no imperativo para uma campanha de economia de água na escola. O seu verbo dá uma ordem, um conselho ou um convite?",
+    "modelo": "Ex.: “Feche a torneira e economize água!” — é um conselho/convite para o leitor agir.",
+    "chk": [
+     "Meu slogan tem verbo no imperativo?",
+     "Disse que tipo de atitude ele expressa?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Camada 10 · Livro pp. 300–310",
+  "emoji": "🔎",
+  "u": "ga",
+  "titulo": "Interpretação: anúncios e tiras",
+  "texto": [
+   "Na prova, a interpretação costuma vir com um anúncio ou uma tira. Primeiro pergunte: qual é a <b>finalidade</b> do texto? Quem é o <b>público-alvo</b>? O anúncio do Outubro Rosa (p. 309), por exemplo, fala com as <b>mulheres</b> e quer que elas se previnam do câncer.",
+   "Anúncios usam a <b>linguagem verbal</b> (as palavras) e a <b>linguagem não verbal</b> (imagens, cores). No Outubro Rosa há tons de rosa, um laço e luvas de boxe. No anúncio da mata atlântica há folhagens verdes. A imagem <b>reforça</b> a mensagem escrita.",
+   "O quadro de avaliação do cartaz (p. 308) lista os <b>elementos do anúncio de propaganda</b>: <b>logotipo e slogan</b> da campanha; um <b>texto curto e direto</b> com a informação principal, para chamar a atenção do público-alvo; uma <b>imagem que reforça</b> os sentidos do texto; e a <b>mensagem principal em letras grandes</b> e em lugar de destaque.",
+   "<div class='olhar'><b>E as tiras?</b> O humor muitas vezes nasce de uma palavra entendida de outro jeito. Na p. 306, o pai de Armandinho fala do dia da Independência do Brasil, e o menino entende “independência” como ganhar uma mesada e pagar o lanche. No Outubro Rosa, o slogan “Lute como uma mulher” muda a expressão comum “lute como um homem” para <b>romper estereótipos</b> e mostrar a mulher com <b>força e coragem</b>.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Segundo o quadro de avaliação do livro, quais elementos um anúncio de propaganda em cartaz deve ter?",
+    "modelo": "Logotipo e slogan da campanha; texto curto e direto com a informação principal; imagem que reforça o texto; mensagem principal em letras grandes e em destaque.",
+    "chk": [
+     "Citei logotipo e slogan?",
+     "Citei o texto curto, a imagem e a mensagem em destaque?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Imagine um anúncio com a foto de uma torneira pingando e o texto “Feche a torneira. Cada gota conta.” Qual é a finalidade dele, quem é o público-alvo e como a imagem ajuda a mensagem?",
+    "modelo": "A finalidade é convencer as pessoas a economizar água. O público-alvo são as pessoas em geral (quem usa torneiras). A imagem da torneira pingando mostra o desperdício e reforça o texto.",
+    "chk": [
+     "Disse a finalidade (economizar água)?",
+     "Disse o público-alvo e como a imagem reforça o texto?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Explique para um colega por que o slogan “Lute como uma mulher” é diferente da expressão comum “lute como um homem”.",
+    "modelo": "A expressão comum liga a força e a coragem só aos homens. O slogan troca a palavra para romper esse estereótipo, mostrando a mulher como forte e corajosa e motivando as mulheres a enfrentar o câncer.",
+    "chk": [
+     "Disse que o slogan muda/subverte a expressão comum?",
+     "Disse que ele mostra a mulher com força e coragem (rompe estereótipo)?"
+    ]
+   }
+  ]
+ }
+];
+
+/* ====== PLACAR ====== */
+function renderPlacar(){
+  var c=document.getElementById('pts'); var h=''; var feitos=0;
+  BLOCOS.forEach(function(bl,i){ var b=estado.blocos[i]||{}; var cls='pt'+(b.conferido?' feito':(b.aberto||i===0?' aberto':'')); if(b.conferido) feitos++; h+='<div class="'+cls+'" onclick="irBloco('+i+')">'+(b.conferido?'✔':String(i+1))+'<small>Camada '+(i+1)+'</small></div>'; });
+  c.innerHTML=h;
+  document.getElementById('placar-total').textContent=(feitos<10?'0':'')+feitos+' / '+BLOCOS.length;
+}
+function irBloco(i){ var el=document.getElementById('bloco'+i); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+
+/* ====== ESTADO E PERSISTÊNCIA ====== */
+var CHAVE=KIT+'_leitura_v1';
+var mem={};
+var estado=carregar();
+
+function carregar(){
+  try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s); }catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); }
+  return {blocos:{}};
+}
+function calcProgresso(){
+  var conf=0, chkPend=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estado.blocos[i]; if(!b||!b.conferido) return; conf++;
+    bloco.perguntas.forEach(function(p,j){ var ep=(b.perguntas&&b.perguntas[j])||{chk:{}}; p.chk.forEach(function(pt,k){ if(!ep.chk||!ep.chk[k]) chkPend++; }); });
+  });
+  estado.progresso={conferidos:conf,total:BLOCOS.length,chkPendentes:chkPend};
+  if(conf===BLOCOS.length && chkPend===0){ if(!estado.concluido){ estado.concluido=true; estado.concluidoEm=new Date().toISOString(); } }
+  return estado.progresso;
+}
+function salvar(){
+  calcProgresso();
+  var s=JSON.stringify(estado);
+  try{ localStorage.setItem(CHAVE,s); }catch(e){ mem[CHAVE]=s; }
+  var d=new Date();
+  document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR');
+  atualizarTrilhaFim();
+  renderPlacar();
+}
+function atualizarTrilhaFim(){
+  var p=estado.progresso||calcProgresso();
+  var box=document.getElementById('trilha-fim'), txt=document.getElementById('trilha-fim-txt'), btn=document.getElementById('btn-prox');
+  var h3=box.querySelector('h3');
+  if(estado.concluido||trilhaLiberada()){
+    h3.textContent='✅ Leitura concluída — Quiz destravado!';
+    txt.textContent=estado.concluido?'Você conferiu as '+BLOCOS.length+' camadas e respondeu a autoavaliação. Agora teste o que aprendeu na Prova de Cor.':'Trilha liberada pelos pais.';
+    btn.classList.remove('off');
+  } else {
+    h3.textContent='🔒 Próxima etapa: Quiz';
+    var faltam=p.total-p.conferidos;
+    txt.textContent=faltam>0 ? 'Destrava quando você conferir as '+p.total+' camadas (faltam '+faltam+').' : 'Falta responder a autoavaliação Sim/Não de '+p.chkPendentes+' ponto(s) para destravar.';
+    btn.classList.add('off');
+  }
+  marcarNav();
+}
+function estBloco(i){ if(!estado.blocos[i]) estado.blocos[i]={aberto:i===0,conferido:false,perguntas:{}}; return estado.blocos[i]; }
+function estPerg(i,j){ var b=estBloco(i); if(!b.perguntas[j]) b.perguntas[j]={resp:'',warned:false,red:false,tentou:'',chk:{}}; return b.perguntas[j]; }
+
+/* ====== ANTICÓPIA (motor validado — Português 7º, 08/10/2026; mesmo motor dos kits 6º SJ) ====== */
+function normPal(s){
+  return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/<[^>]*>/g,' ').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+}
+function maiorRun(aw,bw){
+  var bStr=' '+bw.join(' ')+' ', best=0;
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>0; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ if(len>best)best=len; break; }
+    }
+  }
+  return best;
+}
+function cobertoPorRuns(aw,bw,minRun){
+  var bStr=' '+bw.join(' ')+' ', cov=new Array(aw.length).fill(false);
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>=minRun; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)cov[k]=true; break; }
+    }
+  }
+  return cov.filter(Boolean).length;
+}
+function ehCopia(resp, textoBloco, pergunta){
+  var a=normPal(resp), src=normPal(textoBloco), q=normPal(pergunta);
+  if(a.length<5) return false;
+  var qStr=' '+q.join(' ')+' ', keep=new Array(a.length).fill(true);
+  for(var i=0;i<a.length;i++){
+    for(var len=a.length-i; len>=4; len--){
+      var sub=a.slice(i,i+len).join(' ');
+      if(qStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)keep[k]=false; break; }
+    }
+  }
+  var af=a.filter(function(w,idx){return keep[idx];});
+  if(af.length<5) return false;
+  var run=maiorRun(af,src);
+  var cov=cobertoPorRuns(af,src,5);
+  var ratio=cov/af.length;
+  return run>=8 || ratio>0.6;
+}
+
+/* ====== RENDER ====== */
+function textoPlano(bloco){ return bloco.texto.join(' '); }
+
+function render(){
+  var cont=document.getElementById('blocos'); cont.innerHTML='';
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    var div=document.createElement('div'); div.className='bloco '+bloco.u+(b.aberto?'':' travado'); div.id='bloco'+i;
+    var html='<div class="bloco-cab"><div class="num">'+(i+1)+'</div><div><div class="porto">'+bloco.porto+'</div><h3>'+bloco.emoji+' '+bloco.titulo+'</h3></div></div>';
+    if(!b.aberto){
+      html+='<div class="cadeado">🔒 Esta camada começa quando você conferir a camada anterior.</div>';
+      div.innerHTML=html; cont.appendChild(div); return;
+    }
+    html+='<div class="bloco-corpo"><div class="texto">';
+    bloco.texto.forEach(function(p){ html+= (p.indexOf('<div')===0||p.indexOf('<ul')===0? p : '<p>'+p+'</p>'); });
+    html+='</div>';
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      var tagTxt=p.tag==='conc'?'Conceito':'Aplicação';
+      html+='<div class="perg'+(ep.red?' red':'')+'" id="perg'+i+'_'+j+'">';
+      html+='<span class="tag '+p.tag+'">'+tagTxt+'</span>';
+      html+='<label for="ta'+i+'_'+j+'">'+(j+1)+'. '+p.q+'</label>';
+      html+='<textarea id="ta'+i+'_'+j+'" oninput="digitou('+i+','+j+')"></textarea>';
+      html+='<div class="aviso" id="av'+i+'_'+j+'"></div>';
+      html+='<div class="modelo" id="mod'+i+'_'+j+'"><span class="lab">Resposta-modelo</span><p>'+p.modelo+'</p>';
+      html+='<div class="chk" id="chk'+i+'_'+j+'"></div></div>';
+      html+='</div>';
+    });
+    html+='<button class="conferir" id="conf'+i+'" onclick="conferir('+i+')">✔️ Conferir esta camada</button>';
+    html+='<div class="status-bloco" id="st'+i+'"></div>';
+    if(i<BLOCOS.length-1){ html+='<div class="prox" id="px'+i+'"></div>'; }
+    html+='</div>';
+    div.innerHTML=html;
+    cont.appendChild(div);
+    bloco.perguntas.forEach(function(p,j){ var ta=document.getElementById('ta'+i+'_'+j); if(ta) ta.value=estPerg(i,j).resp||''; });
+  });
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    if(b.aberto && b.conferido){ mostrarConferido(i); }
+    atualizarBotao(i);
+  });
+  atualizarRelatorio();
+  atualizarTrilhaFim();
+  renderPlacar();
+}
+
+function digitou(i,j){
+  var ep=estPerg(i,j);
+  ep.resp=document.getElementById('ta'+i+'_'+j).value;
+  if(ep.red){
+    var bloco=BLOCOS[i];
+    if(!ehCopia(ep.resp, textoPlano(bloco), bloco.perguntas[j].q)){
+      ep.red=false;
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso'; av.textContent='';}
+    }
+  }
+  atualizarBotao(i);
+  salvar();
+  atualizarRelatorio();
+}
+
+function atualizarBotao(i){
+  var b=estBloco(i); if(!b.aberto) return;
+  var btn=document.getElementById('conf'+i); if(!btn) return;
+  if(b.conferido){ btn.disabled=true; return; }
+  var todas=true;
+  BLOCOS[i].perguntas.forEach(function(p,j){
+    var v=(document.getElementById('ta'+i+'_'+j)||{}).value||estPerg(i,j).resp||'';
+    if(v.trim().length<3) todas=false;
+  });
+  btn.disabled=!todas;
+}
+
+function conferir(i){
+  var bloco=BLOCOS[i], b=estBloco(i);
+  var algumBloqueado=false;
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    ep.resp=document.getElementById('ta'+i+'_'+j).value;
+    var av=document.getElementById('av'+i+'_'+j);
+    var copia=ehCopia(ep.resp, textoPlano(bloco), p.q);
+    if(copia){
+      if(!ep.warned || ep.resp===ep.tentou){
+        if(!ep.warned){ ep.warned=true; ep.tentou=ep.resp; }
+        av.className='aviso amarelo';
+        av.innerHTML='✋ Boa parte da sua resposta está igual ao texto. Tente <b>reescrever com as suas palavras</b> — explique como se fosse para um amigo, sem olhar o texto. Pode ficar mais curto e simples: o que vale é ser <b>SEU</b>.';
+        algumBloqueado=true;
+      } else {
+        ep.red=true;
+        av.className='aviso vermelho';
+        av.innerHTML='🔴 Esta resposta continua muito parecida com o texto. Ela foi aceita, mas ficou marcada para revisar. Se reescrever com as suas palavras, a marca some.';
+        document.getElementById('perg'+i+'_'+j).classList.add('red');
+      }
+    } else {
+      ep.red=false;
+      if(av){ av.className='aviso'; av.textContent=''; }
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+    }
+  });
+  salvar();
+  if(algumBloqueado){
+    document.getElementById('st'+i).innerHTML='<span style="color:var(--laranja)">✍️ Reescreva (mude) as respostas marcadas em amarelo e clique em Conferir de novo.</span>';
+    return;
+  }
+  b.conferido=true;
+  if(i<BLOCOS.length-1){ estBloco(i+1).aberto=true; }
+  salvar();
+  render();
+  var alvo=document.getElementById('bloco'+i);
+  if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function mostrarConferido(i){
+  var bloco=BLOCOS[i];
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    var mod=document.getElementById('mod'+i+'_'+j); if(mod) mod.classList.add('show');
+    if(ep.red){ var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.add('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso vermelho'; av.innerHTML='🔴 Resposta marcada para revisar (muito parecida com o texto). Reescreva com as suas palavras para tirar a marca.';}
+    }
+    var chk=document.getElementById('chk'+i+'_'+j); if(chk){
+      var h='<b style="font-size:.8rem;color:#8fe0b4">Confira você: a sua resposta…</b>';
+      p.chk.forEach(function(pt,k){
+        var val=ep.chk[k]||'';
+        h+='<div class="item"><span>'+pt+'</span><span class="simnao">'
+         +'<button class="sim'+(val==='sim'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'sim\')">Sim</button>'
+         +'<button class="nao'+(val==='nao'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'nao\')">Não</button>'
+         +'</span></div>';
+      });
+      chk.innerHTML=h;
+    }
+  });
+  atualizarStatusBloco(i);
+  var btn=document.getElementById('conf'+i); if(btn){ btn.textContent='✔️ Camada conferida'; btn.disabled=true; }
+  if(i<BLOCOS.length-1){
+    var px=document.getElementById('px'+i);
+    if(px) px.innerHTML='<a href="#bloco'+(i+1)+'" onclick="irBloco('+(i+1)+');return false;">➡️ Ir para a próxima camada</a>';
+  }
+}
+
+function marcarChk(i,j,k,val){
+  var ep=estPerg(i,j); ep.chk[k]=val;
+  salvar(); mostrarConferido(i); atualizarStatusBloco(i); atualizarRelatorio();
+}
+
+function statusPergunta(i,j){
+  var ep=estPerg(i,j), p=BLOCOS[i].perguntas[j];
+  if(ep.red) return 'revisar';
+  var temNao=false, todasResp=true;
+  p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao') temNao=true; if(!ep.chk[k]) todasResp=false; });
+  if(temNao) return 'revisar';
+  if(!todasResp) return 'pendente';
+  return 'ok';
+}
+function atualizarStatusBloco(i){
+  var st=document.getElementById('st'+i); if(!st) return;
+  var revisar=false, pendente=false;
+  BLOCOS[i].perguntas.forEach(function(p,j){ var s=statusPergunta(i,j); if(s==='revisar')revisar=true; if(s==='pendente')pendente=true; });
+  if(revisar) st.innerHTML='<span style="color:#ffb3bc">🔁 Esta camada tem pontos para revisar.</span>';
+  else if(pendente) st.innerHTML='<span style="color:var(--laranja)">📝 Responda a autoavaliação (Sim/Não) de cada pergunta.</span>';
+  else st.innerHTML='<span style="color:#8fe0b4">✅ Tinta no ponto! Camada impressa com sucesso.</span>';
+  atualizarRelatorio();
+}
+
+function atualizarRelatorio(){
+  var lista=[], totalConf=0, totalRed=0, totalNao=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i); if(!b.conferido) return; totalConf++;
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      if(ep.red){ totalRed++; lista.push('Camada '+(i+1)+' ('+bloco.titulo+'): pergunta '+(j+1)+' — resposta muito parecida com o texto.'); }
+      p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao'){ totalNao++; lista.push('Camada '+(i+1)+' ('+bloco.titulo+'): revisar — "'+pt+'"'); } });
+    });
+  });
+  var rev=document.getElementById('revisar'), rl=document.getElementById('revisar-lista');
+  if(lista.length){ rev.style.display='block'; rl.innerHTML=lista.map(function(x){return '<li>'+x+'</li>';}).join(''); }
+  else { rev.style.display='none'; rl.innerHTML=''; }
+  var rc=document.getElementById('rel-conteudo');
+  rc.innerHTML='<b>Camadas conferidas:</b> '+totalConf+' de '+BLOCOS.length+'.<br>'
+    +'<b>Respostas marcadas (muito parecidas com o texto):</b> '+totalRed+'.<br>'
+    +'<b>Pontos marcados como "Não" na autoavaliação:</b> '+totalNao+'.<br>'
+    +(lista.length? '<span style="color:#ffb3bc">Há '+lista.length+' ponto(s) para revisar (lista acima).</span>' : '<span style="color:#8fe0b4">Sem pontos pendentes para revisar. 👏</span>');
+}
+
+/* ====== EXPORTAR / IMPORTAR / ZERAR ====== */
+function exportar(){
+  var dados=JSON.stringify(estado,null,2);
+  var blob=new Blob([dados],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='leitura-guiada_atelie-de-serigrafia.json'; a.click();
+}
+function importar(ev){
+  var f=ev.target.files[0]; if(!f) return;
+  var r=new FileReader();
+  r.onload=function(){ try{ estado=JSON.parse(r.result); if(!estado.blocos) estado.blocos={}; salvar(); render(); mostrarModal('✅ Progresso importado!',false); }catch(e){ mostrarModal('❌ Arquivo inválido.',false); } };
+  r.readAsText(f);
+}
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Tem certeza que quer apagar TODO o progresso desta leitura? (Se a leitura já foi concluída, o Quiz continua destravado.)',true); }
+function mostrarModal(txt,confirmar){
+  document.getElementById('modal-txt').innerHTML=txt;
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none';
+  document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar && acaoZerar){ var c=estado.concluido, ce=estado.concluidoEm; estado={blocos:{}}; if(c){estado.concluido=true; estado.concluidoEm=ce;} salvar(); render(); } acaoZerar=null; fecharModal(); };
+}
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+render();
+</script>
+</body>
+</html>

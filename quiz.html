@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz · Ateliê de Serigrafia · Português 6º</title>
+<style>
+  :root{--fundo:#15161c;--fundo2:#1e2029;--aco:#30333f;--aco2:#454959;--laranja:#ff7a2f;--azul:#4a9df8;--verde:#3ddc84;--vermelho:#ff5d6c;--amarelo:#ffd23f;--texto:#f3ece0;--cinza:#aaa49a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 480px at 50% -10%,#13283f,#15161c 60%),var(--fundo);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#0c2440,#123a63);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--azul)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#c6e2ff;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#d3e6f5;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--fundo2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--azul);color:#04213d;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--azul);font-size:1.1rem;margin-bottom:8px}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--fundo2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--fundo);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .codigo{background:linear-gradient(120deg,#163a2a,#1b4d36);border:2px solid var(--verde);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none}
+  .codigo.show{display:block}
+  .codigo .cod{font-size:1.8rem;font-weight:bold;letter-spacing:3px;color:#8fe0b4;margin:6px 0}
+  .progresso{height:10px;background:var(--aco);border-radius:6px;overflow:hidden;margin-bottom:16px}
+  .progresso div{height:100%;background:linear-gradient(90deg,var(--azul),var(--laranja));width:0;transition:width .3s}
+  .q{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-bottom:14px}
+  .q .num{color:var(--azul);font-weight:bold;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+  .q .tema{float:right;font-size:.7rem;color:var(--cinza);background:var(--fundo);border:1px solid var(--aco2);border-radius:10px;padding:2px 8px}
+  .q h3{font-size:1rem;margin:6px 0 10px;font-weight:600}
+  .alt{display:block;background:#131925;border:1px solid var(--aco2);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+  .alt:hover{border-color:var(--azul)}
+  .alt input{margin-right:8px}
+  .alt.sel{border-color:var(--azul);background:#10263f}
+  .alt.certa{border-color:var(--verde);background:#0e2b1f}
+  .alt.errada{border-color:#555;background:#1c1c24;color:#aaa}
+  .alt.marcada-errada{border-color:var(--vermelho);background:#3a1420}
+  .exp{margin-top:8px;font-size:.88rem;padding:8px 10px;border-radius:8px;background:#131925;border-left:3px solid var(--laranja);display:none}
+  .exp.show{display:block}
+  .enviar{width:100%;background:var(--laranja);color:#2a1300;border:none;border-radius:12px;padding:14px;font-size:1.05rem;font-weight:bold;margin:10px 0}
+  .enviar:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .gab{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin:16px 0;display:none}
+  .gab.show{display:block}
+  .gab input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0a0e16;color:var(--texto);font-size:1rem;width:180px;text-transform:uppercase}
+  .gab button{background:var(--azul);color:#04213d;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px}
+  .gab .msg{margin-top:8px;font-size:.9rem}
+  .trilha-fim{background:linear-gradient(120deg,#1b2a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#8fe0b4;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#262d3e;color:#6f7896;pointer-events:none}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(5,6,12,.96);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--azul);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--azul);color:#04213d;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Ateliê de Serigrafia · Português 6º ano · Colégio São José</div>
+  <h1>🎯 Quiz — Prova de Cor</h1>
+  <p>18 questões · Verbos e interpretação · Código MED para os pais</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a class="on" href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="codigo" id="codigo"><div>Seu código de liberação</div><div class="cod" id="cod"></div><div id="codtxt"></div></div>
+
+  <div class="intro">
+    <h2>🎯 A prova de cor</h2>
+    <p>Antes da tiragem, todo serígrafo faz uma <b>prova de cor</b> para ver se as tintas acertaram o tom. São <b>18 questões</b>, todas obrigatórias. Depois de <b>Enviar</b>, as respostas ficam travadas e aparece o seu <b>código MED</b>. Com esse código abre o gabarito comentado. Ao enviar, o <b>🗺️ Resumo destrava</b>.</p>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div class="progresso"><div id="barra"></div></div>
+  <div id="questoes"></div>
+  <button class="enviar" id="btn-enviar" onclick="enviar()" disabled>📨 Enviar respostas (responda todas)</button>
+
+  <div class="gab" id="gab">
+    <b>🔑 Gabarito comentado:</b> digite o código MED que apareceu no topo.<br>
+    <input id="gab-in" placeholder="MED-XX-YY"><button onclick="abrirGab()">Ver gabarito</button>
+    <div class="msg" id="gab-msg"></div>
+  </div>
+
+  <div class="trilha-fim" id="trilha-fim">
+    <h3>🔒 Próxima etapa: Resumo</h3>
+    <p id="trilha-fim-txt">O Resumo destrava quando você enviar o Quiz.</p>
+    <a class="btn off" id="btn-prox" href="resumo.html">🗺️ Ir para o Resumo</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🎨</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Quiz, conclua a Leitura Guiada.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+<div class="modal-bg" id="modal" style="background:rgba(0,0,0,.75)">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='serigrafia_verbos';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+function checarTrava(){
+  if(podeAbrir('quiz')) return true;
+  var L=lerJSON(KIT+'_leitura_v1'); var p=(L&&L.progresso)||{conferidos:0,total:10,chkPendentes:0};
+  var faltam=p.total-p.conferidos;
+  var txt= faltam>0 ? 'Para abrir o Quiz, conclua a Leitura Guiada: faltam '+faltam+' de '+p.total+' camadas.' : 'Para abrir o Quiz, responda a autoavaliação Sim/Não da Leitura Guiada ('+p.chkPendentes+' ponto(s) pendente(s)).';
+  document.getElementById('lock-txt').textContent=txt;
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(6px)';
+  return false;
+}
+
+/* ====== QUESTÕES (conteúdo do livro — Ecos Língua Portuguesa 6, SM, Módulo 7, pp. 300–310) — a correta é guardada pelo id, nunca pela letra ====== */
+var Q=[
+ {
+  "tema": "Camada 1 · Verbo",
+  "p": "Segundo o livro, os verbos são palavras que expressam:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "ações, estados ou fenômenos da natureza.",
+    "ok": true,
+    "e": "É a definição da p. 300."
+   },
+   {
+    "id": "b",
+    "t": "nomes de pessoas, lugares e objetos.",
+    "e": "Dar nome aos seres é papel do substantivo, não do verbo."
+   },
+   {
+    "id": "c",
+    "t": "apenas ações feitas por pessoas.",
+    "e": "Incompleto: o verbo também expressa estados (ser) e fenômenos da natureza (chover)."
+   },
+   {
+    "id": "d",
+    "t": "somente características dos seres.",
+    "e": "Característica é o que o verbo de estado LIGA ao substantivo; o verbo não se resume a isso."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 1 · Verbo",
+  "p": "Na frase “Ontem choveu a tarde toda”, o verbo “choveu” expressa:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "um fenômeno da natureza.",
+    "ok": true,
+    "e": "Chover é o exemplo de fenômeno da natureza usado pelo livro (vai chover)."
+   },
+   {
+    "id": "b",
+    "t": "uma ação praticada por uma pessoa.",
+    "e": "Ninguém “faz” a chuva: é a natureza."
+   },
+   {
+    "id": "c",
+    "t": "um estado que liga um substantivo a uma característica.",
+    "e": "Isso é o verbo de estado, como “são” em “as mulheres são mais da metade da população”."
+   },
+   {
+    "id": "d",
+    "t": "uma ordem dada ao leitor.",
+    "e": "Ordem é uma das ideias do modo imperativo; “choveu” está no indicativo."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 1 · Verbo",
+  "p": "Em “As mulheres são mais da metade da população”, o verbo “são”:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "liga o substantivo “mulheres” a uma característica, indicando estado.",
+    "ok": true,
+    "e": "É a explicação do livro (p. 300)."
+   },
+   {
+    "id": "b",
+    "t": "expressa uma ação praticada pelas mulheres.",
+    "e": "No mesmo exemplo, quem expressa ação é “ocupam”."
+   },
+   {
+    "id": "c",
+    "t": "indica um fenômeno da natureza.",
+    "e": "Fenômeno da natureza é, por exemplo, chover."
+   },
+   {
+    "id": "d",
+    "t": "está no modo imperativo.",
+    "e": "“São” afirma uma certeza: está no indicativo."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 2 · Locução",
+  "p": "Em “Na noite de ontem estava chovendo”, qual é o verbo principal da locução e em que forma nominal ele está?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "“chovendo”, no gerúndio.",
+    "ok": true,
+    "e": "O principal é sempre o último da locução; “chovendo” termina em -ndo: gerúndio."
+   },
+   {
+    "id": "b",
+    "t": "“estava”, no infinitivo.",
+    "e": "“Estava” é o auxiliar, e é ele que está conjugado."
+   },
+   {
+    "id": "c",
+    "t": "“chovendo”, no particípio.",
+    "e": "Particípio seria “chovido”."
+   },
+   {
+    "id": "d",
+    "t": "“estava”, no gerúndio.",
+    "e": "“Estava” é o auxiliar conjugado, não uma forma nominal."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 2 · Formas nominais",
+  "p": "Qual alternativa traz o verbo “trabalhar” nas três formas nominais, na ordem infinitivo – gerúndio – particípio?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "trabalhar – trabalhando – trabalhado",
+    "ok": true,
+    "e": "É o quadro da p. 300."
+   },
+   {
+    "id": "b",
+    "t": "trabalhando – trabalhar – trabalhado",
+    "e": "A ordem está trocada: trabalhando é gerúndio."
+   },
+   {
+    "id": "c",
+    "t": "trabalhar – trabalhado – trabalhando",
+    "e": "Trabalhado é particípio e trabalhando é gerúndio."
+   },
+   {
+    "id": "d",
+    "t": "trabalho – trabalhava – trabalharei",
+    "e": "Essas são formas conjugadas (presente, pretérito e futuro), não formas nominais."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 3 · Conjugação",
+  "p": "O verbo “pôr” pertence a qual conjugação?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "2ª conjugação.",
+    "ok": true,
+    "e": "O livro coloca os verbos em -er e em -or (escrever e pôr) na 2ª conjugação."
+   },
+   {
+    "id": "b",
+    "t": "1ª conjugação.",
+    "e": "A 1ª é a dos verbos em -ar."
+   },
+   {
+    "id": "c",
+    "t": "3ª conjugação.",
+    "e": "A 3ª é a dos verbos em -ir."
+   },
+   {
+    "id": "d",
+    "t": "Nenhuma, porque termina em -or.",
+    "e": "Pegadinha: -or entra na 2ª conjugação."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 3 · Conjugação",
+  "p": "Qual grupo tem APENAS verbos da 3ª conjugação?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "partir, dormir, abrir",
+    "ok": true,
+    "e": "Todos terminam em -ir."
+   },
+   {
+    "id": "b",
+    "t": "amar, estudar, cantar",
+    "e": "Todos terminam em -ar: 1ª conjugação."
+   },
+   {
+    "id": "c",
+    "t": "escrever, vencer, pôr",
+    "e": "Todos são da 2ª conjugação (-er e -or)."
+   },
+   {
+    "id": "d",
+    "t": "partir, escrever, amar",
+    "e": "Grupo misturado: 3ª, 2ª e 1ª."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 3 · Conjugação",
+  "p": "Na p. 310, o livro pergunta a que conjugação pertencem as formas “é” e “vencer”. A resposta é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "as duas são da 2ª conjugação.",
+    "ok": true,
+    "e": "“É” vem de “ser”; “ser” e “vencer” terminam em -er."
+   },
+   {
+    "id": "b",
+    "t": "“é” é da 1ª e “vencer” é da 2ª.",
+    "e": "Para classificar “é”, volte ao infinitivo “ser”, que termina em -er."
+   },
+   {
+    "id": "c",
+    "t": "as duas são da 3ª conjugação.",
+    "e": "A 3ª é dos verbos em -ir."
+   },
+   {
+    "id": "d",
+    "t": "“é” não tem conjugação, porque é muito curto.",
+    "e": "Todo verbo tem conjugação: basta voltar ao infinitivo."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 4 · Tempo",
+  "p": "Em “Ela sobreviverá sem internet”, o verbo está no:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "futuro.",
+    "ok": true,
+    "e": "Indica algo posterior ao momento em que se fala."
+   },
+   {
+    "id": "b",
+    "t": "presente.",
+    "e": "O presente seria “sobrevive”."
+   },
+   {
+    "id": "c",
+    "t": "pretérito.",
+    "e": "O pretérito seria “sobrevivia”."
+   },
+   {
+    "id": "d",
+    "t": "imperativo.",
+    "e": "Imperativo é modo, não tempo."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 4 · Tempo",
+  "p": "No livro, o tempo que indica algo ANTERIOR ao momento em que se fala é chamado de:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "passado ou pretérito.",
+    "ok": true,
+    "e": "Os dois nomes indicam o mesmo tempo."
+   },
+   {
+    "id": "b",
+    "t": "futuro.",
+    "e": "O futuro é posterior ao momento da fala."
+   },
+   {
+    "id": "c",
+    "t": "presente.",
+    "e": "O presente é o momento da fala (ou uma ação permanente)."
+   },
+   {
+    "id": "d",
+    "t": "subjuntivo.",
+    "e": "Subjuntivo é um modo verbal, não um tempo."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 5 · Pessoa",
+  "p": "Em “nós organizamos”, o verbo está na:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "1ª pessoa do plural.",
+    "ok": true,
+    "e": "Na lista do livro: eu, tu, ele (singular) / nós, vós, eles (plural)."
+   },
+   {
+    "id": "b",
+    "t": "1ª pessoa do singular.",
+    "e": "A 1ª do singular é “eu organizo”."
+   },
+   {
+    "id": "c",
+    "t": "3ª pessoa do plural.",
+    "e": "A 3ª do plural é “eles organizam”."
+   },
+   {
+    "id": "d",
+    "t": "2ª pessoa do plural.",
+    "e": "A 2ª do plural é “vós organizais”."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 5 · Número",
+  "p": "Qual frase tem o verbo combinando corretamente em número e pessoa?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Eles organizam a campanha.",
+    "ok": true,
+    "e": "“Eles” (3ª do plural) pede “organizam”."
+   },
+   {
+    "id": "b",
+    "t": "Eles organiza a campanha.",
+    "e": "“Organiza” combina com “ele”, no singular."
+   },
+   {
+    "id": "c",
+    "t": "Nós organiza a campanha.",
+    "e": "Com “nós”, o certo é “organizamos”."
+   },
+   {
+    "id": "d",
+    "t": "Tu organizam a campanha.",
+    "e": "Com “tu”, o certo é “organizas”."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 6 · Modos",
+  "p": "De modo geral, o modo SUBJUNTIVO expressa:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "dúvida, possibilidade ou hipótese.",
+    "ok": true,
+    "e": "Ex. do livro: “Seria ótimo se divulgassem a campanha.”"
+   },
+   {
+    "id": "b",
+    "t": "certeza, convicção.",
+    "e": "Isso é o indicativo."
+   },
+   {
+    "id": "c",
+    "t": "ordem, pedido ou convite.",
+    "e": "Isso é o imperativo."
+   },
+   {
+    "id": "d",
+    "t": "uma ação que acontece todos os dias.",
+    "e": "Ação habitual é um dos usos do presente do indicativo."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 6 · Modos",
+  "p": "Em “Divulgue a campanha de vacinação”, o verbo está no modo:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "imperativo.",
+    "ok": true,
+    "e": "Expressa uma ordem, pedido ou convite ao leitor."
+   },
+   {
+    "id": "b",
+    "t": "indicativo.",
+    "e": "No indicativo seria, por exemplo, “A propaganda divulgou a campanha”."
+   },
+   {
+    "id": "c",
+    "t": "subjuntivo.",
+    "e": "No subjuntivo seria, por exemplo, “se divulgassem a campanha”."
+   },
+   {
+    "id": "d",
+    "t": "infinitivo.",
+    "e": "Infinitivo é forma nominal (divulgar), não modo."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 6 · Interpretação",
+  "p": "Numa tira, a filha diz à mãe: “Por favor, seja legal, mãe.” O verbo no imperativo tem como finalidade:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "fazer um pedido.",
+    "ok": true,
+    "e": "O “por favor” mostra que é um pedido, não uma ordem."
+   },
+   {
+    "id": "b",
+    "t": "dar uma instrução de uso.",
+    "e": "Não há instrução de como fazer algo."
+   },
+   {
+    "id": "c",
+    "t": "expressar uma hipótese.",
+    "e": "Hipótese é ideia do subjuntivo."
+   },
+   {
+    "id": "d",
+    "t": "contar um fato passado.",
+    "e": "O imperativo não conta fatos; ele busca uma reação de quem ouve."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 7 · Oração",
+  "p": "Segundo o livro, oração é:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "um enunciado com sentido organizado em torno de um verbo ou de uma locução verbal.",
+    "ok": true,
+    "e": "É a definição da p. 302."
+   },
+   {
+    "id": "b",
+    "t": "uma frase que sempre tem duas ou mais orações.",
+    "e": "Isso confunde com período, que pode ter UMA ou mais orações."
+   },
+   {
+    "id": "c",
+    "t": "o substantivo e os termos que concordam com ele.",
+    "e": "Isso é o sintagma nominal."
+   },
+   {
+    "id": "d",
+    "t": "qualquer palavra escrita em letra grande no cartaz.",
+    "e": "Não tem relação com a definição de oração."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 7 · Sintagma",
+  "p": "Em “[...] serão realizadas eleições municipais”, qual é o sintagma nominal?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "eleições municipais",
+    "ok": true,
+    "e": "Reúne o substantivo “eleições” e o termo que concorda com ele, “municipais”."
+   },
+   {
+    "id": "b",
+    "t": "serão realizadas",
+    "e": "Esse é o sintagma verbal (núcleo: verbo)."
+   },
+   {
+    "id": "c",
+    "t": "serão",
+    "e": "É só o verbo auxiliar."
+   },
+   {
+    "id": "d",
+    "t": "realizadas eleições",
+    "e": "Mistura parte do sintagma verbal com parte do nominal."
+   }
+  ]
+ },
+ {
+  "tema": "Camada 8 · Presente",
+  "p": "Por que títulos de notícia como “Napoli vence Lecce e amplia vantagem” usam o verbo no presente?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Porque o presente dá valor de novidade à notícia.",
+    "ok": true,
+    "e": "É o que diz o quadro da p. 305."
+   },
+   {
+    "id": "b",
+    "t": "Porque o fato ainda vai acontecer.",
+    "e": "O jogo já aconteceu; o presente é usado para dar novidade."
+   },
+   {
+    "id": "c",
+    "t": "Porque o jornalista tem dúvida sobre o fato.",
+    "e": "Dúvida seria o subjuntivo."
+   },
+   {
+    "id": "d",
+    "t": "Porque é um erro de português comum nos jornais.",
+    "e": "Não é erro: é um uso do presente explicado no livro."
+   }
+  ]
+ }
+];
+
+/* ====== EMBARALHAMENTO COM SEMENTE FIXA (mulberry32) ====== */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+var SEMENTE=20261030;
+var rnd=mulberry32(SEMENTE);
+Q.forEach(function(q){ var arr=q.alts.slice(); for(var i=arr.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var tmp=arr[i]; arr[i]=arr[j]; arr[j]=tmp; } q.ordem=arr; });
+
+/* ====== ESTADO ====== */
+var CHAVE=KIT+'_quiz_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {resp:{},enviado:false}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } var d=new Date(); document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR'); }
+var LETRAS='ABCDEFGHJKLMNPQRSTUVWXYZ';
+function gerarCodigo(ac){ var xx=(ac<10?'0':'')+ac; var yy=LETRAS[Math.floor(Math.random()*LETRAS.length)]+LETRAS[Math.floor(Math.random()*LETRAS.length)]; return 'MED-'+xx+'-'+yy; }
+
+function render(){
+  var c=document.getElementById('questoes'); var h='';
+  Q.forEach(function(q,i){
+    h+='<div class="q" id="q'+i+'"><span class="tema">'+q.tema+'</span><div class="num">Questão '+(i+1)+' de '+Q.length+'</div><h3>'+q.p+'</h3>';
+    q.ordem.forEach(function(a,k){
+      var letra='abcd'[k]; var sel=estado.resp[i]===a.id;
+      var cls='alt'+(sel?' sel':'');
+      if(estado.gabarito){ if(a.ok) cls+=' certa'; else if(sel) cls+=' marcada-errada'; else cls+=' errada'; }
+      h+='<label class="'+cls+'"><input type="radio" name="q'+i+'" value="'+a.id+'" '+(sel?'checked':'')+' '+(estado.enviado?'disabled':'')+' onchange="marcar('+i+',\''+a.id+'\')"> <b>'+letra+')</b> '+a.t;
+      if(estado.gabarito){ h+='<div class="exp show">'+(a.ok?'✅ ':'')+a.e+'</div>'; }
+      h+='</label>';
+    });
+    h+='</div>';
+  });
+  c.innerHTML=h;
+  atualizarBarra();
+  if(estado.enviado){ mostrarEnviado(); }
+  atualizarTrilhaFim();
+}
+function marcar(i,id){ if(estado.enviado) return; estado.resp[i]=id; salvar(); var q=document.getElementById('q'+i); var labs=q.querySelectorAll('.alt'); for(var k=0;k<labs.length;k++){ labs[k].classList.toggle('sel', labs[k].querySelector('input').value===id); } atualizarBarra(); }
+function atualizarBarra(){ var n=Object.keys(estado.resp).length; document.getElementById('barra').style.width=(n/Q.length*100)+'%'; var b=document.getElementById('btn-enviar'); if(!estado.enviado){ b.disabled=n<Q.length; b.textContent=n<Q.length?'📨 Enviar respostas ('+n+' de '+Q.length+' respondidas)':'📨 Enviar respostas'; } }
+function enviar(){
+  if(estado.enviado) return;
+  var ac=0; Q.forEach(function(q,i){ var a=q.alts.filter(function(x){return x.id===estado.resp[i];})[0]; if(a&&a.ok) ac++; });
+  estado.acertos=ac; estado.total=Q.length; estado.codigo=gerarCodigo(ac); estado.enviado=true; estado.concluido=true; estado.concluidoEm=new Date().toISOString();
+  salvar(); render(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function mostrarEnviado(){
+  var b=document.getElementById('btn-enviar'); b.disabled=true; b.textContent='✅ Quiz enviado — respostas travadas';
+  document.getElementById('codigo').classList.add('show'); document.getElementById('cod').textContent=estado.codigo;
+  document.getElementById('codtxt').textContent='Anote este código para os pais. Ele abre o gabarito comentado e o relatório no Início.';
+  document.getElementById('gab').classList.add('show');
+}
+function abrirGab(){ var v=document.getElementById('gab-in').value.trim().toUpperCase(); var m=document.getElementById('gab-msg'); if(v===estado.codigo||v==='PAIS-77'){ estado.gabarito=true; salvar(); render(); document.getElementById('gab-msg').innerHTML='<span style="color:#8fe0b4">Gabarito liberado: '+estado.acertos+' acertos de '+Q.length+'.</span>'; } else { m.innerHTML='<span style="color:#ffb3bc">Código incorreto.</span>'; } }
+function atualizarTrilhaFim(){
+  var box=document.getElementById('trilha-fim'), txt=document.getElementById('trilha-fim-txt'), btn=document.getElementById('btn-prox'); var h3=box.querySelector('h3');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Quiz enviado — Resumo destravado!'; txt.textContent=estado.concluido?'Agora use o Resumo para fechar as dúvidas que o Quiz mostrou.':'Trilha liberada pelos pais.'; btn.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Resumo'; txt.textContent='Destrava quando você enviar o Quiz.'; btn.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='quiz_atelie-de-serigrafia.json'; a.click(); }
+function importar(ev){ var f=ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{ estado=JSON.parse(r.result); if(!estado.resp) estado.resp={}; salvar(); render(); mostrarModal('✅ Progresso importado!',false);}catch(e){ mostrarModal('❌ Arquivo inválido.',false);} }; r.readAsText(f); }
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Apagar as respostas deste Quiz? (Se ele já foi enviado, o código e a conclusão são mantidos.)',true); }
+function mostrarModal(txt,confirmar){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar&&acaoZerar){ if(!estado.enviado){ estado={resp:{},enviado:false}; salvar(); render(); } else { acaoZerar=null; mostrarModal('O Quiz já foi enviado: as respostas ficam travadas. Para refazer do zero, use "Zerar o kit inteiro" no Início.',false); return; } } acaoZerar=null; fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+if(checarTrava()){ render(); } else { marcarNav(); }
+</script>
+</body>
+</html>
